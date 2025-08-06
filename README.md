@@ -1,11 +1,11 @@
 # Kanizsa MCP Photo Server
 
-**VERSION:** 6.0.2 - Strong Typing & Code Quality  
+**VERSION:** 7.0.0 - Complete Separation of Concerns  
 **LAST UPDATED:** August 5, 2025, 14:25:00 CDT
 
 ## 🎯 **Independent MCP Server Repository**
 
-This repository contains the **Kanizsa MCP Photo Server** - a standalone Model Context Protocol (MCP) server that provides photo analysis capabilities through a standardized interface.
+This repository contains the **Kanizsa MCP Photo Server** - a standalone Model Context Protocol (MCP) server that provides photo analysis capabilities through a standardized interface. It operates as an independent service within the Kanizsa platform ecosystem.
 
 ### **🏗️ Architecture Principles**
 
@@ -14,6 +14,25 @@ This repository contains the **Kanizsa MCP Photo Server** - a standalone Model C
 - **📦 Containerized**: Runs as a Docker container with zero host dependencies
 - **🔒 Secure**: JWT authentication, rate limiting, and input validation
 - **📊 Observable**: Comprehensive monitoring, metrics, and distributed tracing
+
+## 🏗️ **Platform Integration**
+
+This MCP Server is part of the **Kanizsa Platform** - a professional photo management ecosystem consisting of three independent repositories:
+
+### **Related Repositories**
+- **Kanizsa Photo Categorizer**: Core platform and API gateway
+  - Repository: `kanizsa-photo-categorizer`
+  - URL: https://github.com/wcervin/kanizsa-photo-categorizer
+- **Kanizsa Adjective Agent**: Specialized photo analysis agent
+  - Repository: `kanizsa-agent-adjective` 
+  - URL: https://github.com/wcervin/kanizsa-agent-adjective
+
+### **Communication Flow**
+```
+┌─────────────────┐    HTTP    ┌─────────────────┐    HTTP    ┌─────────────────┐
+│  Kanizsa Platform│ ────────── │  MCP Server     │ ────────── │  Adjective Agent│
+└─────────────────┘            └─────────────────┘            └─────────────────┘
+```
 
 ## 🚀 **Quick Start**
 
@@ -189,10 +208,25 @@ spec:
     spec:
       containers:
       - name: mcp-server
-        image: kanizsa-mcp-server:6.0.2
+        image: kanizsa-mcp-server:7.0.0
         ports:
         - containerPort: 8002
 ```
+
+## 🔄 **Integration with Kanizsa Platform**
+
+### **Platform Communication**
+The MCP Server integrates seamlessly with the Kanizsa platform:
+
+1. **Receives requests** from the Kanizsa Flask API
+2. **Orchestrates analysis** by calling appropriate agents
+3. **Returns results** to the platform for storage and user display
+4. **Provides monitoring** and health information
+
+### **Agent Discovery**
+The MCP Server can discover and integrate with various analysis agents:
+- **Adjective Agent**: Photo description and categorization
+- **Future Agents**: Object detection, face recognition, etc.
 
 ## 🤝 **Contributing**
 
@@ -211,4 +245,5 @@ MIT License - see LICENSE file for details.
 **Repository:** Independent MCP Server  
 **Communication:** HTTP APIs only  
 **Deployment:** Containerized  
-**Dependencies:** None on other repositories
+**Dependencies:** None on other repositories  
+**Platform Integration:** Kanizsa Photo Management Ecosystem
