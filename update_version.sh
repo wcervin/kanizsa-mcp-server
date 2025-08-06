@@ -43,33 +43,45 @@ print_status "Updating all version references to: $VERSION"
 print_status "Updating package.json..."
 sed -i '' "s/\"version\": \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/\"version\": \"$VERSION\"/g" package.json
 
-# Update TypeScript source files
-print_status "Updating TypeScript source files..."
-find src/ -name "*.ts" -type f -exec sed -i '' "s/version: '[0-9]\+\.[0-9]\+\.[0-9]\+'/version: '$VERSION'/g" {} \;
-find src/ -name "*.ts" -type f -exec sed -i '' "s/\"version\": \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/\"version\": \"$VERSION\"/g" {} \;
-find src/ -name "*.ts" -type f -exec sed -i '' "s/VERSION = \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/VERSION = \"$VERSION\"/g" {} \;
-
 # Update Dockerfile
 print_status "Updating Dockerfile..."
 sed -i '' "s/LABEL version=\"[0-9]\+\.[0-9]\+\.[0-9]\+\"/LABEL version=\"$VERSION\"/g" Dockerfile
 sed -i '' "s/ARG VERSION=[0-9]\+\.[0-9]\+\.[0-9]\+/ARG VERSION=$VERSION/g" Dockerfile
+sed -i '' "s/# Kanizsa v[0-9]\+\.[0-9]\+\.[0-9]\+/# Kanizsa v$VERSION/g" Dockerfile
 
 # Update README.md
 print_status "Updating README.md..."
 sed -i '' "s/Version: [0-9]\+\.[0-9]\+\.[0-9]\+/Version: $VERSION/g" README.md
 sed -i '' "s/\"version\": \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/\"version\": \"$VERSION\"/g" README.md
+sed -i '' "s/\*\*VERSION:\*\* [0-9]\+\.[0-9]\+\.[0-9]\+/\*\*VERSION:\*\* $VERSION/g" README.md
 
 # Update test files
 print_status "Updating test files..."
 if [[ -f "test-improvements.js" ]]; then
     sed -i '' "s/version: '[0-9]\+\.[0-9]\+\.[0-9]\+'/version: '$VERSION'/g" test-improvements.js
     sed -i '' "s/\"version\": \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/\"version\": \"$VERSION\"/g" test-improvements.js
+    sed -i '' "s/\* VERSION: [0-9]\+\.[0-9]\+\.[0-9]\+/\* VERSION: $VERSION/g" test-improvements.js
 fi
+
+# Update TypeScript source files with more comprehensive patterns
+print_status "Updating TypeScript source files with comprehensive patterns..."
+find src/ -name "*.ts" -type f -exec sed -i '' "s/version: '[0-9]\+\.[0-9]\+\.[0-9]\+'/version: '$VERSION'/g" {} \;
+find src/ -name "*.ts" -type f -exec sed -i '' "s/\"version\": \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/\"version\": \"$VERSION\"/g" {} \;
+find src/ -name "*.ts" -type f -exec sed -i '' "s/VERSION = \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/VERSION = \"$VERSION\"/g" {} \;
+find src/ -name "*.ts" -type f -exec sed -i '' "s/\* VERSION: [0-9]\+\.[0-9]\+\.[0-9]\+/\* VERSION: $VERSION/g" {} \;
+find src/ -name "*.ts" -type f -exec sed -i '' "s/userAgent: 'Kanizsa-MCP-Client\/[0-9]\+\.[0-9]\+\.[0-9]\+'/userAgent: 'Kanizsa-MCP-Client\/$VERSION'/g" {} \;
 
 # Update any documentation files
 print_status "Updating documentation files..."
 find . -name "*.md" -type f -exec sed -i '' "s/Version: [0-9]\+\.[0-9]\+\.[0-9]\+/Version: $VERSION/g" {} \;
 find . -name "*.md" -type f -exec sed -i '' "s/\"version\": \"[0-9]\+\.[0-9]\+\.[0-9]\+\"/\"version\": \"$VERSION\"/g" {} \;
+find . -name "*.md" -type f -exec sed -i '' "s/\*\*VERSION:\*\* [0-9]\+\.[0-9]\+\.[0-9]\+/\*\*VERSION:\*\* $VERSION/g" {} \;
+
+# Update any remaining version patterns in all files
+print_status "Updating any remaining version patterns..."
+find . -name "*.ts" -type f -exec sed -i '' "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/v$VERSION/g" {} \;
+find . -name "*.js" -type f -exec sed -i '' "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/v$VERSION/g" {} \;
+find . -name "*.md" -type f -exec sed -i '' "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/v$VERSION/g" {} \;
 
 print_success "All version references updated to $VERSION!"
 print_status "Files updated:"
