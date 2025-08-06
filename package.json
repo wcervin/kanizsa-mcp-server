@@ -1,6 +1,6 @@
 {
   "name": "kanizsa-mcp-photo-server",
-  "version": "6.0.2",
+  "version": "7.0.1",
   "description": "Kanizsa MCP server for photo analysis with adjective agent integration",
   "main": "dist/index.js",
   "type": "module",
