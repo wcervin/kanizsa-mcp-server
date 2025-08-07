@@ -64,7 +64,7 @@ export KANIZSA_BASE_URL=http://kanizsa-app:5000
 ### **1. Agent Communication (HTTP)**
 ```typescript
 // MCP Server communicates with agents via HTTP
-const agentResponse = await fetch('http://adjective-agent:3000/analyze', {
+const agentResponse = await fetch('http://available-agent:3000/analyze', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ photoUrl, options })
