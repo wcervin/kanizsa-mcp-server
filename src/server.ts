@@ -150,7 +150,7 @@ export class MCPPhotoServer {
             // Try to use Kanizsa platform first
             const kanizsaResult = await kanizsaClient.analyzePhoto(
               validatedArgs.photo.url,
-              'adjective-agent',
+              'auto', // Let platform choose best agent
               validatedArgs.options
             );
             
@@ -163,9 +163,9 @@ export class MCPPhotoServer {
               ],
             };
           } catch (error) {
-            // Fallback to HTTP call to adjective agent
-            console.log('Kanizsa platform unavailable, using adjective agent via HTTP');
-            const agentResponse = await fetch('http://adjective-agent:3000/analyze', {
+            // Fallback to available agents via service discovery
+            console.log('Kanizsa platform unavailable, using available agents via HTTP');
+            const agentResponse = await fetch('http://available-agent:3000/analyze', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -175,7 +175,7 @@ export class MCPPhotoServer {
             });
             
             if (!agentResponse.ok) {
-              throw new Error(`Adjective agent error: ${agentResponse.statusText}`);
+              throw new Error(`Agent error: ${agentResponse.statusText}`);
             }
             
             const result = await agentResponse.json();
@@ -194,8 +194,8 @@ export class MCPPhotoServer {
           const validatedArgs = validateBatchPhotoAnalysisRequest(args);
           
           try {
-            // Use HTTP call to adjective agent for batch processing
-            const agentResponse = await fetch('http://adjective-agent:3000/analyze/batch', {
+            // Use HTTP call to available agents for batch processing
+            const agentResponse = await fetch('http://available-agent:3000/analyze/batch', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -205,7 +205,7 @@ export class MCPPhotoServer {
             });
             
             if (!agentResponse.ok) {
-              throw new Error(`Adjective agent error: ${agentResponse.statusText}`);
+              throw new Error(`Agent error: ${agentResponse.statusText}`);
             }
             
             const results = await agentResponse.json();

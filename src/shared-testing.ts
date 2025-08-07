@@ -124,7 +124,7 @@ export class MockDataGenerator {
       confidence: 0.85,
       timestamp: new Date().toISOString(),
       processingTime: 1500,
-      agentId: 'adjective-agent',
+      agentId: 'available-agent',
       ...overrides
     };
   }
@@ -493,7 +493,7 @@ export class E2ETester {
       // Test 3: Simulate API call (would be real in actual E2E test)
       const apiResponse = await this.httpClient.analyzePhoto(
         mockPhoto.url,
-        'adjective-agent',
+        'auto', // Let platform choose best agent
         mockOptions
       );
 
