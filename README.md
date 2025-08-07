@@ -1,6 +1,6 @@
 # Kanizsa MCP Photo Server
 
-**VERSION:** 7.0.0 - Complete Separation of Concerns  
+**VERSION:** 10.0.1 - MCP Server Release  
 **LAST UPDATED:** August 5, 2025, 14:25:00 CDT
 
 ## 🎯 **Independent MCP Server Repository**
