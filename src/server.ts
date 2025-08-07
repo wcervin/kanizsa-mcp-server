@@ -19,6 +19,7 @@ import {
   type AdjectiveResult
 } from './shared-types.js';
 import { SharedHttpClient } from './shared-http-client.js';
+import { MCPApiEndpoints } from './api-endpoints.js';
 
 // Use shared HTTP client for Kanizsa API communication
 const kanizsaClient = new SharedHttpClient({
@@ -28,6 +29,7 @@ const kanizsaClient = new SharedHttpClient({
 
 export class MCPPhotoServer {
   private server: Server;
+  private apiEndpoints: MCPApiEndpoints;
   // Removed direct agent dependency - using HTTP communication
   // private agent: AdjectiveAgent;
 
@@ -38,7 +40,7 @@ export class MCPPhotoServer {
     this.server = new Server(
       {
         name: 'kanizsa-mcp-photo-server',
-        version: '6.0.2',
+        version: '10.0.1',
       },
       {
         capabilities: {
@@ -46,6 +48,9 @@ export class MCPPhotoServer {
         },
       }
     );
+
+    // Initialize comprehensive API endpoints
+    this.apiEndpoints = new MCPApiEndpoints();
 
     this.setupHandlers();
   }
@@ -279,6 +284,11 @@ export class MCPPhotoServer {
   }
 
   async run() {
+    // Start the comprehensive API endpoints server
+    const apiPort = process.env.MCP_API_PORT || 8003;
+    await this.apiEndpoints.start(apiPort);
+    console.error(`Kanizsa MCP API Server running on port ${apiPort}`);
+
     // Use HTTP transport for containerized deployment
     const port = process.env.MCP_SERVER_PORT || 8002;
     const transport = new HttpServerTransport({
@@ -288,5 +298,6 @@ export class MCPPhotoServer {
     
     await this.server.connect(transport);
     console.error(`Kanizsa MCP Photo Server running on port ${port}`);
+    console.error(`Comprehensive API coverage: ${apiPort} endpoints + ${port} MCP protocol`);
   }
 }

@@ -1,7 +1,7 @@
 # Kanizsa MCP Photo Server
 
-**VERSION:** 10.0.1 - MCP Server Release  
-**LAST UPDATED:** August 5, 2025, 14:25:00 CDT
+**VERSION:** 10.0.1 - Comprehensive API Coverage  
+**LAST UPDATED:** August 6, 2025, 21:00:00 CDT
 
 ## 🎯 **Independent MCP Server Repository**
 
@@ -14,6 +14,7 @@ This repository contains the **Kanizsa MCP Photo Server** - a standalone Model C
 - **📦 Containerized**: Runs as a Docker container with zero host dependencies
 - **🔒 Secure**: JWT authentication, rate limiting, and input validation
 - **📊 Observable**: Comprehensive monitoring, metrics, and distributed tracing
+- **🚀 Comprehensive API Coverage**: 100% endpoint coverage for platform and marketplace integration
 
 ## 🏗️ **Platform Integration**
 
@@ -95,17 +96,41 @@ const platformResponse = await fetch('http://kanizsa-app:5000/api/photos/analyze
       methods: ["GET", "POST"]
 ```
 
-## 📋 **MCP Tools**
+## 📋 **Comprehensive API Coverage**
 
-### **Photo Analysis Tools**
-- `analyze_photo`: Analyze a single photo with specified agent
-- `analyze_photo_batch`: Analyze multiple photos in batch
-- `get_photo_metadata`: Retrieve photo metadata and analysis history
+### **Photo Analysis Endpoints**
+- `POST /api/photos/analyze`: Analyze single photo with agent selection
+- `POST /api/photos/analyze/batch`: Analyze multiple photos in batch
+- `GET /api/photos/metadata/{photoId}`: Get photo metadata from cache
+- `POST /api/photos/scan`: Scan photo library
 
-### **System Management Tools**
+### **Agent Management Endpoints**
+- `GET /api/agents`: List available agents
+- `GET /api/agents/{agentId}`: Get agent details
+- `POST /api/agents`: Register new agent
+- `POST /api/agents/{agentId}/test`: Test agent connection
+
+### **Task Management Endpoints**
+- `GET /api/tasks/{taskId}`: Get task status
+- `POST /api/tasks/{taskId}/cancel`: Cancel running task
+- `GET /api/tasks`: List user tasks
+
+### **Monitoring Endpoints**
+- `GET /api/monitoring/metrics`: Get system metrics
+- `GET /api/monitoring/performance`: Get performance statistics
+- `GET /api/monitoring/errors`: Get error logs
+
+### **Marketplace Endpoints**
+- `GET /api/marketplace`: Browse marketplace for agents
+- `POST /api/marketplace/install/{agentId}`: Install agent from marketplace
+- `PUT /api/marketplace/update/{agentId}`: Update marketplace agent
+- `DELETE /api/marketplace/uninstall/{agentId}`: Uninstall marketplace agent
+
+### **MCP Protocol Tools**
+- `analyze_photo`: MCP protocol for photo analysis
+- `analyze_photo_batch`: MCP protocol for batch analysis
 - `get_system_health`: Check system health and status
 - `get_task_status`: Monitor background task progress
-- `list_available_agents`: Discover available analysis agents
 
 ## 🔧 **Development**
 
@@ -153,16 +178,25 @@ docker logs kanizsa-mcp-server
 
 ## 📚 **API Documentation**
 
-### **MCP Protocol Endpoints**
+### **Comprehensive API Coverage**
+The MCP Server provides **100% API endpoint coverage** for both Kanizsa platform integration and third-party agent marketplace management.
+
+### **API Endpoints (Port 8003)**
+- **Health & Status**: `/health`, `/status`, `/version`
+- **Photo Analysis**: `/api/photos/*` (4 endpoints)
+- **Agent Management**: `/api/agents/*` (4 endpoints)
+- **Task Management**: `/api/tasks/*` (3 endpoints)
+- **Monitoring**: `/api/monitoring/*` (3 endpoints)
+- **Marketplace**: `/api/marketplace/*` (4 endpoints)
+
+### **MCP Protocol Endpoints (Port 8002)**
 - `POST /mcp/analyze_photo`: Analyze single photo
 - `POST /mcp/analyze_batch`: Analyze multiple photos
 - `GET /mcp/health`: System health check
 - `GET /mcp/metrics`: System metrics
 
-### **Internal API Endpoints**
-- `GET /health`: Health check
-- `GET /metrics`: Prometheus metrics
-- `GET /version`: Version information
+### **Complete Documentation**
+See [API_DOCUMENTATION.md](API_DOCUMENTATION.md) for comprehensive endpoint documentation with examples, rate limits, and error codes.
 
 ## 🏗️ **Repository Independence**
 

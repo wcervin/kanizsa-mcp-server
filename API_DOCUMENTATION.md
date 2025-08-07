@@ -1,0 +1,975 @@
+# Kanizsa MCP Server API Documentation
+
+**Version:** 10.0.1  
+**Last Updated:** August 6, 2025  
+**Gateway:** Kong API Gateway v3.4
+
+## Overview
+
+The Kanizsa MCP Server provides comprehensive API endpoints for photo analysis, agent management, and marketplace integration. It serves as a bridge between the Kanizsa platform and third-party agents, enabling seamless communication and analysis capabilities.
+
+## Base URL
+
+```
+http://mcp-server:8002
+```
+
+## Authentication
+
+Most endpoints require JWT authentication. Include the token in the Authorization header:
+
+```
+Authorization: Bearer <your-jwt-token>
+```
+
+## Response Headers
+
+All responses include standard headers:
+
+```
+X-Request-ID: <correlation-id>
+X-Kanizsa-Version: 10.0.1
+X-Response-Time: <response-time-ms>
+```
+
+## Error Handling
+
+Standard error response format:
+
+```json
+{
+  "error": "Error message",
+  "code": "ERROR_CODE",
+  "timestamp": "2025-08-06T21:00:00Z",
+  "requestId": "<correlation-id>"
+}
+```
+
+---
+
+## Health & Status Endpoints
+
+### GET /health
+
+Comprehensive health check endpoint.
+
+**Response:**
+```json
+{
+  "status": "healthy",
+  "timestamp": "2025-08-06T21:00:00Z",
+  "version": "10.0.1",
+  "services": {
+    "kanizsa_platform": {
+      "status": "up",
+      "responseTime": 125
+    },
+    "mcp_server": {
+      "status": "up",
+      "uptime": 3600,
+      "memory": {
+        "rss": 52428800,
+        "heapTotal": 20971520,
+        "heapUsed": 10485760
+      }
+    }
+  }
+}
+```
+
+### GET /status
+
+Detailed system status and metrics.
+
+**Response:**
+```json
+{
+  "timestamp": "2025-08-06T21:00:00Z",
+  "version": "10.0.1",
+  "health": {
+    "status": "healthy",
+    "services": {
+      "kanizsa_platform": { "status": "up" },
+      "mcp_server": { "status": "up" }
+    }
+  },
+  "metrics": {
+    "cpu_usage": 25.5,
+    "memory_usage": 60.2,
+    "disk_usage": 45.8
+  },
+  "agents": [
+    {
+      "id": "adjective-agent",
+      "name": "Adjective Agent",
+      "url": "http://adjective-agent:3000",
+      "status": "available",
+      "capabilities": ["photo_analysis", "adjective_generation"]
+    }
+  ],
+  "uptime": 3600,
+  "memory": {
+    "rss": 52428800,
+    "heapTotal": 20971520,
+    "heapUsed": 10485760
+  }
+}
+```
+
+### GET /version
+
+Get version information.
+
+**Response:**
+```json
+{
+  "version": "10.0.1",
+  "name": "kanizsa-mcp-photo-server",
+  "description": "Kanizsa MCP Photo Server with comprehensive API coverage",
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+---
+
+## Photo Analysis Endpoints
+
+### POST /api/photos/analyze
+
+Analyze a single photo using available agents.
+
+**Rate Limit:** 10 requests per minute  
+**Authentication:** Required
+
+**Request Body:**
+```json
+{
+  "photo": {
+    "id": "photo_123",
+    "url": "https://example.com/photo.jpg",
+    "title": "Beautiful sunset",
+    "description": "A stunning sunset over the mountains",
+    "tags": ["sunset", "mountains", "nature"]
+  },
+  "options": {
+    "maxAdjectives": 10,
+    "includeCategories": true,
+    "enhanceDescription": true,
+    "confidence": 0.8,
+    "timeout": 30000
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "photoId": "photo_123",
+    "adjectives": ["breathtaking", "majestic", "serene", "dramatic"],
+    "categories": {
+      "nature": ["landscape", "outdoor"],
+      "colors": ["orange", "golden", "warm"]
+    },
+    "enhancedDescription": "A breathtaking and majestic sunset over the mountains, featuring serene golden and orange hues that create a dramatic and warm atmosphere.",
+    "confidence": 0.92,
+    "timestamp": "2025-08-06T21:00:00Z",
+    "processingTime": 2.5,
+    "agentId": "adjective-agent"
+  },
+  "timestamp": "2025-08-06T21:00:00Z",
+  "source": "kanizsa-platform"
+}
+```
+
+### POST /api/photos/analyze/batch
+
+Analyze multiple photos in batch.
+
+**Rate Limit:** 5 requests per minute  
+**Authentication:** Required
+
+**Request Body:**
+```json
+{
+  "photos": [
+    {
+      "id": "photo_123",
+      "url": "https://example.com/photo1.jpg"
+    },
+    {
+      "id": "photo_124",
+      "url": "https://example.com/photo2.jpg"
+    }
+  ],
+  "options": {
+    "maxAdjectives": 5,
+    "includeCategories": true
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "photoId": "photo_123",
+      "adjectives": ["breathtaking", "majestic"],
+      "categories": { "nature": ["landscape"] },
+      "confidence": 0.92
+    },
+    {
+      "photoId": "photo_124",
+      "adjectives": ["vibrant", "energetic"],
+      "categories": { "urban": ["cityscape"] },
+      "confidence": 0.88
+    }
+  ],
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+### GET /api/photos/metadata/{photoId}
+
+Get photo metadata from cache.
+
+**Rate Limit:** 100 requests per minute  
+**Authentication:** Required
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "photoId": "photo_123",
+    "metadata": {
+      "filename": "photo.jpg",
+      "size": 2048576,
+      "created": "2025-08-06T10:30:00Z",
+      "exif": {
+        "camera": "iPhone 15 Pro",
+        "aperture": "f/1.8",
+        "iso": 100
+      }
+    },
+    "cache_hit": true
+  },
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+### POST /api/photos/scan
+
+Scan photo library.
+
+**Rate Limit:** 2 requests per hour  
+**Authentication:** Required
+
+**Request Body:**
+```json
+{
+  "libraryPath": "/Users/username/Pictures",
+  "options": {
+    "recursive": true,
+    "fileTypes": ["jpg", "png", "heic"],
+    "organizeBy": "date"
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "taskId": "task_12345",
+    "status": "started",
+    "message": "Library scanning started successfully",
+    "totalPhotos": 1250,
+    "estimatedTime": "5 minutes"
+  },
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+---
+
+## Agent Management Endpoints
+
+### GET /api/agents
+
+List available agents.
+
+**Rate Limit:** 30 requests per minute  
+**Authentication:** Required
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "adjective-agent",
+      "name": "Adjective Agent",
+      "url": "http://adjective-agent:3000",
+      "status": "available",
+      "capabilities": ["photo_analysis", "adjective_generation"]
+    },
+    {
+      "id": "object-detection-agent",
+      "name": "Object Detection Agent",
+      "url": "http://object-detection-agent:3000",
+      "status": "available",
+      "capabilities": ["object_detection", "image_classification"]
+    },
+    {
+      "id": "face-recognition-agent",
+      "name": "Face Recognition Agent",
+      "url": "http://face-recognition-agent:3000",
+      "status": "unavailable",
+      "error": "Connection failed"
+    }
+  ],
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+### GET /api/agents/{agentId}
+
+Get agent details.
+
+**Rate Limit:** 50 requests per minute  
+**Authentication:** Required
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "adjective-agent",
+    "url": "http://adjective-agent:3000",
+    "name": "Adjective Agent",
+    "version": "1.0.0",
+    "description": "Generates descriptive adjectives for photos",
+    "capabilities": ["photo_analysis", "adjective_generation"],
+    "status": "available",
+    "uptime": 3600,
+    "requests_processed": 1250
+  },
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+### POST /api/agents
+
+Register new agent.
+
+**Rate Limit:** 10 requests per minute  
+**Authentication:** Required
+
+**Request Body:**
+```json
+{
+  "name": "custom-analysis-agent",
+  "url": "http://custom-agent:3000",
+  "capabilities": ["custom_analysis", "text_generation"]
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "custom-analysis-agent",
+    "name": "custom-analysis-agent",
+    "url": "http://custom-agent:3000",
+    "capabilities": ["custom_analysis", "text_generation"],
+    "status": "registered"
+  },
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+### POST /api/agents/{agentId}/test
+
+Test agent connection.
+
+**Rate Limit:** 20 requests per minute  
+**Authentication:** Required
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "agentId": "adjective-agent",
+    "url": "http://adjective-agent:3000",
+    "status": "connected",
+    "responseTime": 45,
+    "statusCode": 200
+  },
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+---
+
+## Task Management Endpoints
+
+### GET /api/tasks/{taskId}
+
+Get task status.
+
+**Rate Limit:** 100 requests per minute  
+**Authentication:** Required
+
+**Response:**
+```json
+{
+  "taskId": "task_12345",
+  "status": "completed",
+  "progress": 100,
+  "result": {
+    "analyzed_photos": 5,
+    "processing_time": 45.2
+  },
+  "createdAt": "2025-08-06T20:55:00Z",
+  "updatedAt": "2025-08-06T21:00:00Z",
+  "completedAt": "2025-08-06T21:00:00Z"
+}
+```
+
+### POST /api/tasks/{taskId}/cancel
+
+Cancel a running task.
+
+**Rate Limit:** 10 requests per minute  
+**Authentication:** Required
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "taskId": "task_12345",
+    "status": "cancelled",
+    "message": "Task cancelled successfully"
+  },
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+### GET /api/tasks
+
+List user tasks.
+
+**Rate Limit:** 30 requests per minute  
+**Authentication:** Required
+
+**Query Parameters:**
+- `userId` (optional): Filter by user ID
+- `status` (optional): Filter by status (pending, running, completed, failed, cancelled)
+- `limit` (optional): Number of tasks to return (default: 50)
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "taskId": "task_12345",
+      "status": "completed",
+      "progress": 100,
+      "createdAt": "2025-08-06T20:55:00Z",
+      "completedAt": "2025-08-06T21:00:00Z"
+    },
+    {
+      "taskId": "task_12346",
+      "status": "running",
+      "progress": 75,
+      "createdAt": "2025-08-06T21:00:00Z"
+    }
+  ],
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+---
+
+## Monitoring Endpoints
+
+### GET /api/monitoring/metrics
+
+Get system metrics.
+
+**Rate Limit:** 60 requests per minute  
+**Authentication:** Required
+
+**Response:**
+```json
+{
+  "timestamp": "2025-08-06T21:00:00Z",
+  "metrics": {
+    "system": {
+      "cpu_usage": 25.5,
+      "memory_usage": 60.2,
+      "disk_usage": 45.8
+    },
+    "redis": {
+      "connected_clients": 12,
+      "memory_used": "256MB"
+    },
+    "celery": {
+      "active_workers": 4,
+      "queue_length": 5
+    }
+  },
+  "mcp_server": {
+    "uptime": 3600,
+    "memory": {
+      "rss": 52428800,
+      "heapTotal": 20971520,
+      "heapUsed": 10485760
+    },
+    "cpu": {
+      "user": 1500000,
+      "system": 500000
+    }
+  }
+}
+```
+
+### GET /api/monitoring/performance
+
+Get performance statistics.
+
+**Rate Limit:** 30 requests per minute  
+**Authentication:** Required
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "requests_per_second": 45.2,
+    "average_response_time": 125.5,
+    "error_rate": 0.02,
+    "active_connections": 25,
+    "memory_usage": {
+      "rss": 52428800,
+      "heapTotal": 20971520,
+      "heapUsed": 10485760
+    }
+  },
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+### GET /api/monitoring/errors
+
+Get error logs.
+
+**Rate Limit:** 20 requests per minute  
+**Authentication:** Required
+
+**Query Parameters:**
+- `limit` (optional): Number of errors to return (default: 100)
+- `severity` (optional): Filter by severity (error, warning, info)
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "timestamp": "2025-08-06T20:55:00Z",
+      "severity": "error",
+      "message": "Agent connection failed",
+      "details": {
+        "agentId": "face-recognition-agent",
+        "error": "Connection timeout"
+      }
+    },
+    {
+      "timestamp": "2025-08-06T20:50:00Z",
+      "severity": "warning",
+      "message": "High memory usage detected",
+      "details": {
+        "memory_usage": 85.5
+      }
+    }
+  ],
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+---
+
+## Marketplace Endpoints
+
+### GET /api/marketplace
+
+Browse marketplace for available agents.
+
+**Rate Limit:** 30 requests per minute  
+**Authentication:** Required
+
+**Query Parameters:**
+- `category` (optional): Filter by category
+- `search` (optional): Search by agent name
+- `sort` (optional): Sort by name or status
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "adjective-agent",
+      "name": "Adjective Agent",
+      "url": "http://adjective-agent:3000",
+      "status": "available",
+      "capabilities": ["photo_analysis", "adjective_generation"],
+      "rating": 4.8,
+      "downloads": 1250,
+      "version": "1.0.0"
+    },
+    {
+      "id": "object-detection-agent",
+      "name": "Object Detection Agent",
+      "url": "http://object-detection-agent:3000",
+      "status": "available",
+      "capabilities": ["object_detection", "image_classification"],
+      "rating": 4.6,
+      "downloads": 890,
+      "version": "2.1.0"
+    }
+  ],
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+### POST /api/marketplace/install/{agentId}
+
+Install agent from marketplace.
+
+**Rate Limit:** 5 requests per minute  
+**Authentication:** Required
+
+**Request Body:**
+```json
+{
+  "version": "1.0.0",
+  "configuration": {
+    "maxConcurrentRequests": 10,
+    "timeout": 30000
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "agentId": "new-analysis-agent",
+    "version": "1.0.0",
+    "status": "installed",
+    "url": "http://new-analysis-agent:3000",
+    "installationTime": "2025-08-06T21:00:00Z"
+  },
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+### PUT /api/marketplace/update/{agentId}
+
+Update marketplace agent.
+
+**Rate Limit:** 5 requests per minute  
+**Authentication:** Required
+
+**Request Body:**
+```json
+{
+  "version": "2.0.0"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "agentId": "adjective-agent",
+    "version": "2.0.0",
+    "status": "updated",
+    "updateTime": "2025-08-06T21:00:00Z"
+  },
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+### DELETE /api/marketplace/uninstall/{agentId}
+
+Uninstall marketplace agent.
+
+**Rate Limit:** 5 requests per minute  
+**Authentication:** Required
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "agentId": "old-analysis-agent",
+    "status": "uninstalled",
+    "uninstallTime": "2025-08-06T21:00:00Z"
+  },
+  "timestamp": "2025-08-06T21:00:00Z"
+}
+```
+
+---
+
+## MCP Protocol Endpoints
+
+### POST /mcp/analyze_photo
+
+MCP protocol endpoint for photo analysis.
+
+**Request Body:**
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/call",
+  "params": {
+    "name": "analyze_photo",
+    "arguments": {
+      "photo": {
+        "id": "photo_123",
+        "url": "https://example.com/photo.jpg"
+      },
+      "options": {
+        "maxAdjectives": 10,
+        "includeCategories": true
+      }
+    }
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"photoId\":\"photo_123\",\"adjectives\":[\"breathtaking\",\"majestic\"],\"confidence\":0.92}"
+      }
+    ]
+  }
+}
+```
+
+### POST /mcp/analyze_batch
+
+MCP protocol endpoint for batch analysis.
+
+**Request Body:**
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "tools/call",
+  "params": {
+    "name": "analyze_photo_batch",
+    "arguments": {
+      "photos": [
+        {
+          "id": "photo_123",
+          "url": "https://example.com/photo1.jpg"
+        },
+        {
+          "id": "photo_124",
+          "url": "https://example.com/photo2.jpg"
+        }
+      ]
+    }
+  }
+}
+```
+
+---
+
+## Agent Communication Protocol
+
+### Agent Health Check
+
+Agents should implement a health check endpoint:
+
+```
+GET /health
+```
+
+**Response:**
+```json
+{
+  "status": "healthy",
+  "version": "1.0.0",
+  "capabilities": ["photo_analysis", "adjective_generation"],
+  "uptime": 3600
+}
+```
+
+### Agent Analysis Endpoint
+
+Agents should implement an analysis endpoint:
+
+```
+POST /analyze
+```
+
+**Request Body:**
+```json
+{
+  "photoUrl": "https://example.com/photo.jpg",
+  "options": {
+    "maxAdjectives": 10,
+    "includeCategories": true
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "photoId": "photo_123",
+  "adjectives": ["breathtaking", "majestic"],
+  "categories": {
+    "nature": ["landscape"]
+  },
+  "confidence": 0.92,
+  "processingTime": 2.5
+}
+```
+
+### Agent Info Endpoint
+
+Agents should implement an info endpoint:
+
+```
+GET /info
+```
+
+**Response:**
+```json
+{
+  "name": "Adjective Agent",
+  "version": "1.0.0",
+  "description": "Generates descriptive adjectives for photos",
+  "capabilities": ["photo_analysis", "adjective_generation"],
+  "author": "Kanizsa Team",
+  "license": "MIT"
+}
+```
+
+---
+
+## Rate Limiting
+
+All endpoints have configurable rate limits:
+
+- **Health/Status:** No limits
+- **Photo Analysis:** 10/minute (single), 5/minute (batch)
+- **Agent Management:** 10-50/minute
+- **Task Management:** 10-100/minute
+- **Monitoring:** 20-60/minute
+- **Marketplace:** 5-30/minute
+
+## Error Codes
+
+| Code | Description |
+|------|-------------|
+| `AUTHENTICATION_ERROR` | Invalid or missing authentication |
+| `PERMISSION_ERROR` | Insufficient permissions |
+| `VALIDATION_ERROR` | Invalid request data |
+| `RATE_LIMIT_EXCEEDED` | Rate limit exceeded |
+| `AGENT_NOT_FOUND` | Agent not found |
+| `AGENT_UNAVAILABLE` | Agent is unavailable |
+| `TASK_NOT_FOUND` | Task not found |
+| `MARKETPLACE_ERROR` | Marketplace operation failed |
+| `INTERNAL_ERROR` | Internal server error |
+
+## SDK Examples
+
+### JavaScript
+
+```javascript
+// Analyze photo
+const response = await fetch('http://mcp-server:8002/api/photos/analyze', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer your-jwt-token'
+  },
+  body: JSON.stringify({
+    photo: {
+      id: 'photo_123',
+      url: 'https://example.com/photo.jpg'
+    },
+    options: {
+      maxAdjectives: 10
+    }
+  })
+});
+
+const result = await response.json();
+console.log(result);
+```
+
+### Python
+
+```python
+import requests
+
+# Analyze photo
+response = requests.post(
+    'http://mcp-server:8002/api/photos/analyze',
+    headers={
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer your-jwt-token'
+    },
+    json={
+        'photo': {
+            'id': 'photo_123',
+            'url': 'https://example.com/photo.jpg'
+        },
+        'options': {
+            'maxAdjectives': 10
+        }
+    }
+)
+
+result = response.json()
+print(result)
+```
+
+---
+
+## Support
+
+For API support and questions:
+
+- **Documentation:** https://docs.kanizsa.app/mcp-api
+- **Support:** support@kanizsa.app
+- **Status Page:** https://status.kanizsa.app
+- **GitHub Issues:** https://github.com/wcervin/kanizsa-mcp-server/issues
