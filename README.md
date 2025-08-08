@@ -1,7 +1,7 @@
 # Kanizsa MCP Photo Server
 
-**VERSION:** 11.4.0 - Comprehensive API Coverage  
-**LAST UPDATED:** August 08, 2025, 13:33:08 CDT
+**VERSION:** 11.5.0 - Comprehensive API Coverage  
+**LAST UPDATED:** August 08, 2025, 15:06:50 CDT
 
 ## 🎯 **Independent MCP Server Repository**
 
@@ -65,7 +65,7 @@ This MCP Server is part of the **Kanizsa Platform** - a professional photo manag
 ### **Start the MCP Server**
 ```bash
 # Build and start
-docker-compose up mcp-server
+docker-compose up kanizsa-mcp-server
 
 # Or build manually
 docker build -t kanizsa-mcp-server .
@@ -109,8 +109,8 @@ const platformResponse = await fetch('http://kanizsa-app:5000/api/photos/analyze
 ### **3. Kong API Gateway Integration**
 ```yaml
 # Kong routes MCP Server requests
-- name: mcp-server
-  url: http://mcp-server:8002
+      - name: kanizsa-mcp-server
+        url: http://kanizsa-mcp-server:8002
   routes:
     - name: mcp-routes
       paths: ["/mcp"]
@@ -234,8 +234,8 @@ This repository is **completely independent** and:
 
 ### **Docker Compose**
 ```yaml
-mcp-server:
-  build: ./mcp-server
+kanizsa-mcp-server:
+  build: ./kanizsa-mcp-server
   ports:
     - "8002:8002"
   environment:
@@ -262,7 +262,7 @@ spec:
         app: kanizsa-mcp-server
     spec:
       containers:
-      - name: mcp-server
+      - name: kanizsa-mcp-server
         image: kanizsa-mcp-server:7.0.0
         ports:
         - containerPort: 8002

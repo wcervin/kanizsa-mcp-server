@@ -4,8 +4,8 @@
  * This file contains shared type definitions that are used across
  * the MCP server and agents to ensure consistency and eliminate duplication.
  * 
- * VERSION: 11.4.0 - Strong Typing & Code Quality
- * LAST UPDATED: August 08, 2025, 13:33:08 CDT
+ * VERSION: 11.5.0 - Strong Typing & Code Quality
+ * LAST UPDATED: August 08, 2025, 15:06:50 CDT
  */
 
 import { z } from 'zod';
