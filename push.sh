@@ -64,22 +64,20 @@ fi
 
 # Parse command line arguments
 VERSION_TYPE="${1:-}"
-COMMIT_MESSAGE="${2:-}"
 
-# Show usage if arguments are missing
-if [[ -z "$VERSION_TYPE" ]] || [[ -z "$COMMIT_MESSAGE" ]]; then
+# Show usage if version type is missing
+if [[ -z "$VERSION_TYPE" ]]; then
     echo ""
-    print_status "Usage: $0 [version_type] [commit_message]"
+    print_status "Usage: $0 [version_type]"
     echo "  version_type: 'revision', 'minor', 'major', or 'custom'"
-    echo "  commit_message: The commit message to use"
     echo ""
     print_status "Examples:"
-    echo "  $0 revision 'fix: bug fix'                  # Patch version bump"
-    echo "  $0 minor 'feat: new feature'                # Minor version bump"
-    echo "  $0 major 'BREAKING: major changes'          # Major version bump"
-    echo "  $0 custom 2.0.0 'feat: major release'       # Custom version"
+    echo "  $0 revision                    # Patch version bump"
+    echo "  $0 minor                       # Minor version bump"
+    echo "  $0 major                       # Major version bump"
+    echo "  $0 custom                      # Custom version (will prompt for version)"
     echo ""
-    print_error "Both version_type and commit_message are required!"
+    print_error "Version type is required!"
     echo ""
     exit 1
 fi
@@ -138,22 +136,11 @@ print_step "Step 3: Committing changes..."
 print_status "Running: ./03_commit.sh"
 
 if [[ -f "$SCRIPT_DIR/03_commit.sh" ]]; then
-    if [[ -n "$COMMIT_MESSAGE" ]]; then
-        print_status "Using provided commit message: $COMMIT_MESSAGE"
-        if ./03_commit.sh "$COMMIT_MESSAGE"; then
-            print_success "✓ Commit completed"
-        else
-            print_error "✗ Commit failed!"
-            exit 1
-        fi
+    if ./03_commit.sh; then
+        print_success "✓ Commit completed"
     else
-        print_status "No commit message provided, will prompt for one..."
-        if ./03_commit.sh; then
-            print_success "✓ Commit completed"
-        else
-            print_error "✗ Commit failed!"
-            exit 1
-        fi
+        print_error "✗ Commit failed!"
+        exit 1
     fi
 else
     print_error "✗ 03_commit.sh not found!"

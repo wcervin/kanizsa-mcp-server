@@ -66,10 +66,31 @@ if [[ -n "$VERSION_TYPE_DESC" ]]; then
     print_status "Version type: $VERSION_TYPE_DESC"
 fi
 
-# Validate commit message is provided
+# Generate commit message if not provided
 if [[ -z "$COMMIT_MESSAGE" ]]; then
-    print_error "Commit message is required!"
-    print_error "Usage: $0 [commit_message]"
+    # Generate a default commit message based on version type
+    case $VERSION_TYPE_DESC in
+        "revision")
+            COMMIT_MESSAGE="fix: version bump (revision)"
+            ;;
+        "minor")
+            COMMIT_MESSAGE="feat: version bump (minor)"
+            ;;
+        "major")
+            COMMIT_MESSAGE="BREAKING: version bump (major)"
+            ;;
+        "custom")
+            COMMIT_MESSAGE="feat: version bump (custom)"
+            ;;
+        *)
+            COMMIT_MESSAGE="chore: version bump"
+            ;;
+    esac
+    print_status "Using auto-generated commit message: $COMMIT_MESSAGE"
+fi
+
+if [[ -z "$COMMIT_MESSAGE" ]]; then
+    print_error "Commit message cannot be empty."
     exit 1
 fi
 
