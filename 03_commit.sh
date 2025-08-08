@@ -66,15 +66,10 @@ if [[ -n "$VERSION_TYPE_DESC" ]]; then
     print_status "Version type: $VERSION_TYPE_DESC"
 fi
 
-# Get commit message if not provided
+# Validate commit message is provided
 if [[ -z "$COMMIT_MESSAGE" ]]; then
-    echo ""
-    print_status "Enter commit message:"
-    read -p "Commit message: " COMMIT_MESSAGE
-fi
-
-if [[ -z "$COMMIT_MESSAGE" ]]; then
-    print_error "Commit message cannot be empty."
+    print_error "Commit message is required!"
+    print_error "Usage: $0 [commit_message]"
     exit 1
 fi
 

@@ -63,7 +63,7 @@ if [[ ! -d "$SCRIPT_DIR/.git" ]]; then
 fi
 
 # Parse command line arguments
-VERSION_TYPE="${1:-none}"
+VERSION_TYPE="${1:-}"
 COMMIT_MESSAGE="${2:-}"
 
 # Show usage if no arguments provided
@@ -71,7 +71,7 @@ if [[ -z "$VERSION_TYPE" ]]; then
     echo ""
     print_status "Usage: $0 [version_type] [commit_message]"
     echo "  version_type: 'revision', 'minor', 'major', 'custom', or 'none'"
-    echo "  commit_message: The commit message to use (optional)"
+    echo "  commit_message: The commit message to use (required)"
     echo ""
     print_status "Examples:"
     echo "  $0 none 'fix: quick fix'                    # No version bump, just commit and push"
@@ -80,8 +80,27 @@ if [[ -z "$VERSION_TYPE" ]]; then
     echo "  $0 major 'BREAKING: major changes'          # Major version bump"
     echo "  $0 custom 2.0.0 'feat: major release'       # Custom version"
     echo ""
-    print_status "If no commit_message is provided, you'll be prompted for one."
+    print_error "Both version_type and commit_message are required!"
     echo ""
+    exit 1
+fi
+
+# Validate version type
+case $VERSION_TYPE in
+    "revision"|"minor"|"major"|"custom"|"none")
+        # Valid version type
+        ;;
+    *)
+        print_error "Invalid version type: $VERSION_TYPE"
+        print_error "Valid types: revision, minor, major, custom, none"
+        exit 1
+        ;;
+esac
+
+# Validate commit message is provided
+if [[ -z "$COMMIT_MESSAGE" ]]; then
+    print_error "Commit message is required!"
+    print_error "Usage: $0 [version_type] [commit_message]"
     exit 1
 fi
 

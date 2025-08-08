@@ -52,7 +52,7 @@ CURRENT_VERSION="${2:-}"
 if [[ -z "$VERSION_TYPE" ]]; then
     echo ""
     print_status "Usage: $0 [version_type] [current_version]"
-    echo "  version_type: 'revision', 'minor', 'major', or 'custom'"
+    echo "  version_type: 'revision', 'minor', 'major', 'custom', or 'none'"
     echo "  current_version: current version (optional, will be read from VERSION file)"
     echo ""
     print_status "Examples:"
@@ -60,6 +60,7 @@ if [[ -z "$VERSION_TYPE" ]]; then
     echo "  $0 minor                       # Bump minor version (1.0.0 → 1.1.0)"
     echo "  $0 major                       # Bump major version (1.0.0 → 2.0.0)"
     echo "  $0 custom 2.0.0                # Set to specific version"
+    echo "  $0 none                        # No version change"
     echo ""
     exit 1
 fi
@@ -109,9 +110,14 @@ case $VERSION_TYPE in
         NEW_VERSION="$CURRENT_VERSION"
         VERSION_TYPE_DESC="custom"
         ;;
+    "none")
+        NEW_VERSION="$CURRENT_VERSION"
+        VERSION_TYPE_DESC="none"
+        print_status "No version change requested, keeping current version: $CURRENT_VERSION"
+        ;;
     *)
         print_error "Invalid version type: $VERSION_TYPE"
-        print_error "Valid types: revision, minor, major, custom"
+        print_error "Valid types: revision, minor, major, custom, none"
         exit 1
         ;;
 esac
