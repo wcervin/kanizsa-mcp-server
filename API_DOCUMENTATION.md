@@ -28,7 +28,7 @@ All responses include standard headers:
 
 ```
 X-Request-ID: <correlation-id>
-X-Kanizsa-Version: 11.0.0
+X-Kanizsa-Version: 11.1.1
 X-Response-Time: <response-time-ms>
 ```
 
@@ -58,7 +58,7 @@ Comprehensive health check endpoint.
 {
   "status": "healthy",
   "timestamp": "2025-08-06T21:00:00Z",
-  "version": "11.0.0",
+  "version": "11.1.1",
   "services": {
     "kanizsa_platform": {
       "status": "up",
@@ -85,7 +85,7 @@ Detailed system status and metrics.
 ```json
 {
   "timestamp": "2025-08-06T21:00:00Z",
-  "version": "11.0.0",
+  "version": "11.1.1",
   "health": {
     "status": "healthy",
     "services": {
@@ -123,7 +123,7 @@ Get version information.
 **Response:**
 ```json
 {
-  "version": "11.0.0",
+  "version": "11.1.1",
   "name": "kanizsa-mcp-photo-server",
   "description": "Kanizsa MCP Photo Server with comprehensive API coverage",
   "timestamp": "2025-08-06T21:00:00Z"
@@ -352,7 +352,7 @@ Get agent details.
     "id": "adjective-agent",
     "url": "http://adjective-agent:3000",
     "name": "Adjective Agent",
-    "version": "1.0.0",
+    "version": "11.1.1",
     "description": "Generates descriptive adjectives for photos",
     "capabilities": ["photo_analysis", "adjective_generation"],
     "status": "available",
@@ -636,7 +636,7 @@ Browse marketplace for available agents.
       "capabilities": ["photo_analysis", "adjective_generation"],
       "rating": 4.8,
       "downloads": 1250,
-      "version": "1.0.0"
+      "version": "11.1.1"
     },
     {
       "id": "object-detection-agent",
@@ -646,7 +646,7 @@ Browse marketplace for available agents.
       "capabilities": ["object_detection", "image_classification"],
       "rating": 4.6,
       "downloads": 890,
-      "version": "2.1.0"
+      "version": "11.1.1"
     }
   ],
   "timestamp": "2025-08-06T21:00:00Z"
@@ -663,7 +663,7 @@ Install agent from marketplace.
 **Request Body:**
 ```json
 {
-  "version": "1.0.0",
+  "version": "11.1.1",
   "configuration": {
     "maxConcurrentRequests": 10,
     "timeout": 30000
@@ -677,7 +677,7 @@ Install agent from marketplace.
   "success": true,
   "data": {
     "agentId": "new-analysis-agent",
-    "version": "1.0.0",
+    "version": "11.1.1",
     "status": "installed",
     "url": "http://new-analysis-agent:3000",
     "installationTime": "2025-08-06T21:00:00Z"
@@ -696,7 +696,7 @@ Update marketplace agent.
 **Request Body:**
 ```json
 {
-  "version": "2.0.0"
+  "version": "11.1.1"
 }
 ```
 
@@ -706,7 +706,7 @@ Update marketplace agent.
   "success": true,
   "data": {
     "agentId": "adjective-agent",
-    "version": "2.0.0",
+    "version": "11.1.1",
     "status": "updated",
     "updateTime": "2025-08-06T21:00:00Z"
   },
@@ -824,7 +824,7 @@ GET /health
 ```json
 {
   "status": "healthy",
-  "version": "1.0.0",
+  "version": "11.1.1",
   "capabilities": ["photo_analysis", "adjective_generation"],
   "uptime": 3600
 }
@@ -874,7 +874,7 @@ GET /info
 ```json
 {
   "name": "Adjective Agent",
-  "version": "1.0.0",
+  "version": "11.1.1",
   "description": "Generates descriptive adjectives for photos",
   "capabilities": ["photo_analysis", "adjective_generation"],
   "author": "Kanizsa Team",

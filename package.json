@@ -1,6 +1,6 @@
 {
   "name": "kanizsa-mcp-photo-server",
-  "version": "11.0.0",
+  "version": "11.1.1",
   "description": "Kanizsa MCP server for photo analysis with agent integration",
   "main": "dist/index.js",
   "type": "module",

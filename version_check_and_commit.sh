@@ -132,7 +132,25 @@ if [[ "$VERSION_BUMP_CHOICE" =~ ^[Yy]$ ]] || [[ "$VERSION_BUMP_CHOICE" =~ ^[123]
     # Run version update script (includes documentation updates)
     print_status "Running version script with documentation updates..."
     cd "$SCRIPT_DIR"
-    ./update_version.sh
+    
+    # Check if update_version.sh exists and is executable
+    if [[ ! -f "./update_version.sh" ]]; then
+        print_error "update_version.sh script not found!"
+        exit 1
+    fi
+    
+    if [[ ! -x "./update_version.sh" ]]; then
+        print_status "Making update_version.sh executable..."
+        chmod +x ./update_version.sh
+    fi
+    
+    # Run the version script
+    if ./update_version.sh; then
+        print_success "Version script completed successfully"
+    else
+        print_error "Version script failed! Please check the output above."
+        exit 1
+    fi
     
     print_success "Version updated to $NEW_VERSION with documentation updates"
 else
