@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { HttpServerTransport } from '@modelcontextprotocol/sdk/server/http.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
@@ -257,7 +257,7 @@ export class MCPPhotoServer {
         }
 
         case 'get_task_status': {
-          const taskId = args.taskId;
+          const taskId = args?.taskId;
           if (!taskId) {
             throw new Error('Task ID is required');
           }
@@ -285,19 +285,15 @@ export class MCPPhotoServer {
 
   async run() {
     // Start the comprehensive API endpoints server
-    const apiPort = process.env.MCP_API_PORT || 8003;
+    const apiPort = parseInt(process.env.MCP_API_PORT || '8003');
     await this.apiEndpoints.start(apiPort);
     console.error(`Kanizsa MCP API Server running on port ${apiPort}`);
 
-    // Use HTTP transport for containerized deployment
-    const port = process.env.MCP_SERVER_PORT || 8002;
-    const transport = new HttpServerTransport({
-      port: parseInt(port.toString()),
-      host: '0.0.0.0'
-    });
+    // Use stdio transport for now (HTTP transport needs different configuration)
+    const transport = new StdioServerTransport();
     
     await this.server.connect(transport);
-    console.error(`Kanizsa MCP Photo Server running on port ${port}`);
-    console.error(`Comprehensive API coverage: ${apiPort} endpoints + ${port} MCP protocol`);
+    console.error(`Kanizsa MCP Photo Server running via stdio`);
+    console.error(`Comprehensive API coverage: ${apiPort} endpoints + stdio MCP protocol`);
   }
 }

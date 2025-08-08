@@ -5,7 +5,7 @@
  * tests, type safety validation, and end-to-end workflow tests.
  * 
  * VERSION: 6.0.2 - Strong Typing & Code Quality
- * LAST UPDATED: August 5, 2025, 14:25:00 CDT
+ * LAST UPDATED: August 08, 2025, 11:42:09 CDT
  */
 
 import type { SharedCache, SharedHttpClient, SecurityManager, MonitoringManager } from './index.js';
@@ -739,9 +739,4 @@ export function createTestRunner(
   return new TestRunner(cache, httpClient, securityManager, monitoringManager, config);
 }
 
-// =============================================================================
-// EXPORTS
-// =============================================================================
 
-export type { TestConfig, TestResult, TestSuiteResult };
-export { DEFAULT_TEST_CONFIG, MockDataGenerator, createTestRunner };

@@ -6,7 +6,7 @@
  * from the marketplace.
  * 
  * VERSION: 10.0.1 - Comprehensive API Coverage
- * LAST UPDATED: August 6, 2025, 21:00:00 CDT
+ * LAST UPDATED: August 08, 2025, 11:42:09 CDT
  */
 
 import express from 'express';
@@ -15,6 +15,7 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import { z } from 'zod';
 import { SharedHttpClient } from './shared-http-client.js';
+import { SharedCache } from './shared-cache.js';
 import {
   PhotoAnalysisRequest,
   BatchPhotoAnalysisRequest,
@@ -27,8 +28,8 @@ import {
   PhotoSchema,
   AnalysisOptionsSchema
 } from './shared-types.js';
-import { SharedMonitoring } from './shared-monitoring.js';
-import { SharedSecurity } from './shared-security.js';
+import { MonitoringManager } from './shared-monitoring.js';
+import { SecurityManager } from './shared-security.js';
 
 // =============================================================================
 // API ENDPOINTS CLASS
@@ -37,8 +38,8 @@ import { SharedSecurity } from './shared-security.js';
 export class MCPApiEndpoints {
   private app: express.Application;
   private kanizsaClient: SharedHttpClient;
-  private monitoring: SharedMonitoring;
-  private security: SharedSecurity;
+  private monitoring: MonitoringManager;
+  private security: SecurityManager;
   private marketplaceAgents: Map<string, string> = new Map();
 
   constructor() {
@@ -47,8 +48,11 @@ export class MCPApiEndpoints {
       baseUrl: process.env.KANIZSA_BASE_URL || 'http://kanizsa-app:8000',
       apiKey: process.env.KANIZSA_API_KEY
     });
-    this.monitoring = new SharedMonitoring();
-    this.security = new SharedSecurity();
+    
+    // Create cache instance for monitoring and security
+    const cache = new SharedCache();
+    this.monitoring = new MonitoringManager(cache);
+    this.security = new SecurityManager(cache);
     
     this.setupMiddleware();
     this.setupRoutes();
@@ -1084,8 +1088,4 @@ export class MCPApiEndpoints {
   }
 }
 
-// =============================================================================
-// EXPORTS
-// =============================================================================
 
-export { MCPApiEndpoints };

@@ -5,7 +5,7 @@
  * for performance optimization across all services.
  * 
  * VERSION: 6.0.2 - Strong Typing & Code Quality
- * LAST UPDATED: August 5, 2025, 14:25:00 CDT
+ * LAST UPDATED: August 08, 2025, 11:42:09 CDT
  */
 
 import { createClient, RedisClientType } from 'redis';
@@ -505,9 +505,4 @@ export function createSharedCache(config?: Partial<CacheConfig>): SharedCache {
   return new SharedCache(config);
 }
 
-// =============================================================================
-// EXPORTS
-// =============================================================================
 
-export type { CacheConfig };
-export { DEFAULT_CACHE_CONFIG, CACHE_KEYS, createSharedCache };

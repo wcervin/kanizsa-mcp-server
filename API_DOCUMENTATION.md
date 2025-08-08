@@ -1,7 +1,7 @@
 # Kanizsa MCP Server API Documentation
 
-**Version:** 10.0.1  
-**Last Updated:** August 6, 2025  
+**Version:** 11.0.0  
+**Last Updated:** August 8, 2025  
 **Gateway:** Kong API Gateway v3.4
 
 ## Overview

@@ -5,7 +5,7 @@
  * rate limiting, input validation, and security monitoring.
  * 
  * VERSION: 6.0.2 - Strong Typing & Code Quality
- * LAST UPDATED: August 5, 2025, 14:25:00 CDT
+ * LAST UPDATED: August 08, 2025, 11:42:09 CDT
  */
 
 import crypto from 'crypto';
@@ -225,7 +225,7 @@ export const ValidationSchemas = {
     title: z.string().max(500).optional(),
     description: z.string().max(2000).optional(),
     tags: z.array(z.string().max(100)).max(50).optional(),
-    metadata: z.record(z.any()).optional()
+    metadata: z.record(z.string(), z.any()).optional()
   }),
 
   // Analysis options validation
@@ -245,7 +245,7 @@ export const ValidationSchemas = {
       title: z.string().optional(),
       description: z.string().optional(),
       tags: z.array(z.string()).optional(),
-      metadata: z.record(z.any()).optional()
+      metadata: z.record(z.string(), z.any()).optional()
     }),
     options: z.object({
       maxAdjectives: z.number().min(1).max(100).optional(),
@@ -284,7 +284,7 @@ export class InputValidator {
       } else {
         return {
           success: false,
-          errors: result.error.errors.map(err => `${err.path.join('.')}: ${err.message}`)
+          errors: result.error.issues.map(err => `${err.path.join('.')}: ${err.message}`)
         };
       }
     } catch (error) {
@@ -313,7 +313,7 @@ export class InputValidator {
   static validateFileUpload(file: any): { success: boolean; error?: string } {
     const result = ValidationSchemas.FileUpload.safeParse(file);
     if (!result.success) {
-      return { success: false, error: result.error.errors[0].message };
+      return { success: false, error: result.error.issues[0].message };
     }
     return { success: true };
   }
@@ -529,9 +529,4 @@ export function createSecurityManager(cache: SharedCache, config?: Partial<Secur
   return new SecurityManager(cache, config);
 }
 
-// =============================================================================
-// EXPORTS
-// =============================================================================
 
-export type { SecurityConfig, JWTPayload, AuditLogEntry };
-export { DEFAULT_SECURITY_CONFIG, ValidationSchemas, createSecurityManager };

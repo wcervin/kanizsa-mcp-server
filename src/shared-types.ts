@@ -5,7 +5,7 @@
  * the MCP server and agents to ensure consistency and eliminate duplication.
  * 
  * VERSION: 6.0.2 - Strong Typing & Code Quality
- * LAST UPDATED: August 5, 2025, 14:25:00 CDT
+ * LAST UPDATED: August 08, 2025, 11:42:09 CDT
  */
 
 import { z } from 'zod';
@@ -35,7 +35,7 @@ export const PhotoSchema = z.object({
   title: z.string().optional(),
   description: z.string().optional(),
   tags: z.array(z.string()).optional(),
-  metadata: z.record(z.any()).optional()
+  metadata: z.record(z.string(), z.any()).optional()
 });
 
 // =============================================================================
@@ -84,7 +84,7 @@ export interface AdjectiveResult {
 export const AdjectiveResultSchema = z.object({
   photoId: z.string(),
   adjectives: z.array(z.string()),
-  categories: z.record(z.array(z.string())),
+  categories: z.record(z.string(), z.array(z.string())),
   enhancedDescription: z.string(),
   confidence: z.number(),
   timestamp: z.string(),
@@ -182,7 +182,7 @@ export interface ErrorResponse {
 export const ErrorResponseSchema = z.object({
   error: z.string(),
   code: z.string(),
-  details: z.record(z.any()).optional(),
+  details: z.record(z.string(), z.any()).optional(),
   timestamp: z.string(),
   requestId: z.string().optional()
 });
@@ -283,36 +283,4 @@ export interface PaginatedResponse<T> {
   };
 }
 
-// =============================================================================
-// EXPORTS
-// =============================================================================
 
-export type {
-  Photo,
-  AnalysisOptions,
-  AdjectiveResult,
-  PhotoAnalysisRequest,
-  BatchPhotoAnalysisRequest,
-  SystemHealthResponse,
-  TaskStatusResponse,
-  ErrorResponse,
-  ApiResponse,
-  PaginationParams,
-  PaginatedResponse
-};
-
-export {
-  PhotoSchema,
-  AnalysisOptionsSchema,
-  AdjectiveResultSchema,
-  PhotoAnalysisRequestSchema,
-  BatchPhotoAnalysisRequestSchema,
-  ErrorResponseSchema,
-  validatePhoto,
-  validateAnalysisOptions,
-  validatePhotoAnalysisRequest,
-  validateBatchPhotoAnalysisRequest,
-  isPhoto,
-  isAnalysisOptions,
-  isAdjectiveResult
-};

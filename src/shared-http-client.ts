@@ -5,7 +5,7 @@
  * across the MCP server and agents to ensure consistent API communication.
  * 
  * VERSION: 6.0.2 - Strong Typing & Code Quality
- * LAST UPDATED: August 5, 2025, 14:25:00 CDT
+ * LAST UPDATED: August 08, 2025, 11:42:09 CDT
  */
 
 import fetch from 'node-fetch';
@@ -327,9 +327,4 @@ export function createHttpClient(config?: Partial<HttpClientConfig>): SharedHttp
   return new SharedHttpClient(config);
 }
 
-// =============================================================================
-// EXPORTS
-// =============================================================================
 
-export type { HttpClientConfig };
-export { DEFAULT_HTTP_CONFIG, createHttpClient };

@@ -5,7 +5,7 @@
  * in the Kanizsa MCP architecture.
  * 
  * VERSION: 6.0.2 - Strong Typing & Code Quality
- * LAST UPDATED: August 5, 2025, 14:25:00 CDT
+ * LAST UPDATED: August 08, 2025, 11:42:09 CDT
  */
 
 // =============================================================================
@@ -130,31 +130,41 @@ export type {
   AnalysisOptions,
   PhotoAnalysisRequest,
   BatchPhotoAnalysisRequest,
-  
+  ApiResponse
+} from './shared-types.js';
+
+export type {
   // HTTP client types
-  HttpClientConfig,
-  ApiResponse,
-  
+  HttpClientConfig
+} from './shared-http-client.js';
+
+export type {
   // Cache types
-  CacheConfig,
-  
+  CacheConfig
+} from './shared-cache.js';
+
+export type {
   // Security types
   SecurityConfig,
   JWTPayload,
-  AuditLogEntry,
-  
+  AuditLogEntry
+} from './shared-security.js';
+
+export type {
   // Monitoring types
   MonitoringConfig,
   Metric,
   TraceSpan,
   TraceContext,
-  HealthCheckResult,
-  
+  HealthCheckResult
+} from './shared-monitoring.js';
+
+export type {
   // Testing types
   TestConfig,
   TestResult,
   TestSuiteResult
-} from './shared-types.js';
+} from './shared-testing.js';
 
 // =============================================================================
 // DEFAULT EXPORTS
