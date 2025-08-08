@@ -28,11 +28,99 @@
 - Enhanced verification and error handling
 
 
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 The Kanizsa MCP Server provides comprehensive API endpoints for photo analysis, agent management, and marketplace integration. It serves as a bridge between the Kanizsa platform and third-party agents, enabling seamless communication and analysis capabilities.
 
 ## Base URL
 
 ## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### New Features
 - Enhanced modular commit workflow with separate scripts
@@ -82,6 +170,50 @@ http://mcp-server:8002
 - Enhanced verification and error handling
 
 
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 Most endpoints require JWT authentication. Include the token in the Authorization header:
 
 ```
@@ -91,6 +223,50 @@ Authorization: Bearer <your-jwt-token>
 ## Response Headers
 
 ## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### New Features
 - Enhanced modular commit workflow with separate scripts
@@ -144,6 +320,50 @@ X-Response-Time: <response-time-ms>
 - Enhanced verification and error handling
 
 
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 Standard error response format:
 
 ```json
@@ -160,6 +380,50 @@ Standard error response format:
 ## Health & Status Endpoints
 
 ## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### New Features
 - Enhanced modular commit workflow with separate scripts
@@ -267,6 +531,50 @@ Get version information.
 ## Photo Analysis Endpoints
 
 ## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### New Features
 - Enhanced modular commit workflow with separate scripts
@@ -475,6 +783,50 @@ Scan photo library.
 - Enhanced verification and error handling
 
 
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 ### GET /api/agents
 
 List available agents.
@@ -618,6 +970,50 @@ Test agent connection.
 - Enhanced verification and error handling
 
 
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 ### GET /api/tasks/{taskId}
 
 Get task status.
@@ -701,6 +1097,50 @@ List user tasks.
 ## Monitoring Endpoints
 
 ## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### New Features
 - Enhanced modular commit workflow with separate scripts
@@ -832,6 +1272,50 @@ Get error logs.
 ## Marketplace Endpoints
 
 ## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### New Features
 - Enhanced modular commit workflow with separate scripts
@@ -1002,6 +1486,50 @@ Uninstall marketplace agent.
 - Enhanced verification and error handling
 
 
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 ### POST /mcp/analyze_photo
 
 MCP protocol endpoint for photo analysis.
@@ -1077,6 +1605,50 @@ MCP protocol endpoint for batch analysis.
 ## Agent Communication Protocol
 
 ## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### New Features
 - Enhanced modular commit workflow with separate scripts
@@ -1194,6 +1766,50 @@ GET /info
 - Enhanced verification and error handling
 
 
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 All endpoints have configurable rate limits:
 
 - **Health/Status:** No limits
@@ -1206,6 +1822,50 @@ All endpoints have configurable rate limits:
 ## Error Codes
 
 ## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### New Features
 - Enhanced modular commit workflow with separate scripts
@@ -1242,6 +1902,50 @@ All endpoints have configurable rate limits:
 ## SDK Examples
 
 ## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### New Features
 - Enhanced modular commit workflow with separate scripts
@@ -1320,6 +2024,50 @@ print(result)
 ## Support
 
 ## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
+## Version '$version' - '$timestamp'
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### New Features
 - Enhanced modular commit workflow with separate scripts
