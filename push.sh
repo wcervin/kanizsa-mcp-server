@@ -179,3 +179,4 @@ echo "  ✓ Commit"
 echo "  ✓ Push"
 
 print_success "Master push workflow completed successfully!"
+exit 0
