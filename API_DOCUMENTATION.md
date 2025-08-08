@@ -28,7 +28,7 @@ All responses include standard headers:
 
 ```
 X-Request-ID: <correlation-id>
-X-Kanizsa-Version: 10.0.1
+X-Kanizsa-Version: 11.0.0
 X-Response-Time: <response-time-ms>
 ```
 
@@ -58,7 +58,7 @@ Comprehensive health check endpoint.
 {
   "status": "healthy",
   "timestamp": "2025-08-06T21:00:00Z",
-  "version": "10.0.1",
+  "version": "11.0.0",
   "services": {
     "kanizsa_platform": {
       "status": "up",
@@ -85,7 +85,7 @@ Detailed system status and metrics.
 ```json
 {
   "timestamp": "2025-08-06T21:00:00Z",
-  "version": "10.0.1",
+  "version": "11.0.0",
   "health": {
     "status": "healthy",
     "services": {
@@ -123,7 +123,7 @@ Get version information.
 **Response:**
 ```json
 {
-  "version": "10.0.1",
+  "version": "11.0.0",
   "name": "kanizsa-mcp-photo-server",
   "description": "Kanizsa MCP Photo Server with comprehensive API coverage",
   "timestamp": "2025-08-06T21:00:00Z"

@@ -40,7 +40,7 @@ export class MCPPhotoServer {
     this.server = new Server(
       {
         name: 'kanizsa-mcp-photo-server',
-        version: '10.0.1',
+        version: '11.0.0',
       },
       {
         capabilities: {
