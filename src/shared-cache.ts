@@ -4,8 +4,8 @@
  * This module provides a unified caching interface that integrates with Redis
  * for performance optimization across all services.
  * 
- * VERSION: 11.3.0 - Strong Typing & Code Quality
- * LAST UPDATED: August 08, 2025, 13:31:49 CDT
+ * VERSION: 11.4.0 - Strong Typing & Code Quality
+ * LAST UPDATED: August 08, 2025, 13:33:08 CDT
  */
 
 import { createClient, RedisClientType } from 'redis';
