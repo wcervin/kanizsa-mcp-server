@@ -4,8 +4,8 @@
  * This file contains a shared HTTP client implementation that can be used
  * across the MCP server and agents to ensure consistent API communication.
  * 
- * VERSION: 11.1.1 - Strong Typing & Code Quality
- * LAST UPDATED: August 08, 2025, 12:19:26 CDT
+ * VERSION: 11.2.0 - Strong Typing & Code Quality
+ * LAST UPDATED: August 08, 2025, 12:42:33 CDT
  */
 
 import fetch from 'node-fetch';
@@ -42,7 +42,7 @@ export const DEFAULT_HTTP_CONFIG: HttpClientConfig = {
   timeout: 30000,
   retries: 3,
   retryDelay: 1000,
-  userAgent: 'Kanizsa-MCP-Client/11.1.1'
+  userAgent: 'Kanizsa-MCP-Client/11.2.0'
 };
 
 // =============================================================================

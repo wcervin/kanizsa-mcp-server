@@ -5,8 +5,8 @@
  * to communicate with both the Kanizsa platform and third-party agents
  * from the marketplace.
  * 
- * VERSION: 11.1.1 - Comprehensive API Coverage
- * LAST UPDATED: August 08, 2025, 12:19:26 CDT
+ * VERSION: 11.2.0 - Comprehensive API Coverage
+ * LAST UPDATED: August 08, 2025, 12:42:33 CDT
  */
 
 import express from 'express';
@@ -166,7 +166,7 @@ export class MCPApiEndpoints {
         res.json({
           status: 'healthy',
           timestamp: new Date().toISOString(),
-          version: '11.1.1',
+          version: '11.2.0',
           services: health.services,
           mcp_server: {
             status: 'healthy',
@@ -199,7 +199,7 @@ export class MCPApiEndpoints {
     // Version endpoint
     this.app.get('/version', (req, res) => {
       res.json({
-        version: '11.1.1',
+        version: '11.2.0',
         name: 'kanizsa-mcp-photo-server',
         description: 'Kanizsa MCP Photo Server with comprehensive API coverage',
         timestamp: new Date().toISOString()
@@ -836,7 +836,7 @@ export class MCPApiEndpoints {
 
       return {
         timestamp: new Date().toISOString(),
-        version: '11.1.1',
+        version: '11.2.0',
         health,
         metrics,
         agents: agents.data || [],

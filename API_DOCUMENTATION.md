@@ -6,15 +6,81 @@
 
 ## Overview
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 The Kanizsa MCP Server provides comprehensive API endpoints for photo analysis, agent management, and marketplace integration. It serves as a bridge between the Kanizsa platform and third-party agents, enabling seamless communication and analysis capabilities.
 
 ## Base URL
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ```
 http://mcp-server:8002
 ```
 
 ## Authentication
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 Most endpoints require JWT authentication. Include the token in the Authorization header:
 
@@ -24,15 +90,59 @@ Authorization: Bearer <your-jwt-token>
 
 ## Response Headers
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 All responses include standard headers:
 
 ```
 X-Request-ID: <correlation-id>
-X-Kanizsa-Version: 11.1.1
+X-Kanizsa-Version: 11.2.0
 X-Response-Time: <response-time-ms>
 ```
 
 ## Error Handling
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 Standard error response format:
 
@@ -49,6 +159,28 @@ Standard error response format:
 
 ## Health & Status Endpoints
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 ### GET /health
 
 Comprehensive health check endpoint.
@@ -58,7 +190,7 @@ Comprehensive health check endpoint.
 {
   "status": "healthy",
   "timestamp": "2025-08-06T21:00:00Z",
-  "version": "11.1.1",
+  "version": "11.2.0",
   "services": {
     "kanizsa_platform": {
       "status": "up",
@@ -85,7 +217,7 @@ Detailed system status and metrics.
 ```json
 {
   "timestamp": "2025-08-06T21:00:00Z",
-  "version": "11.1.1",
+  "version": "11.2.0",
   "health": {
     "status": "healthy",
     "services": {
@@ -123,7 +255,7 @@ Get version information.
 **Response:**
 ```json
 {
-  "version": "11.1.1",
+  "version": "11.2.0",
   "name": "kanizsa-mcp-photo-server",
   "description": "Kanizsa MCP Photo Server with comprehensive API coverage",
   "timestamp": "2025-08-06T21:00:00Z"
@@ -133,6 +265,28 @@ Get version information.
 ---
 
 ## Photo Analysis Endpoints
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### POST /api/photos/analyze
 
@@ -299,6 +453,28 @@ Scan photo library.
 
 ## Agent Management Endpoints
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 ### GET /api/agents
 
 List available agents.
@@ -352,7 +528,7 @@ Get agent details.
     "id": "adjective-agent",
     "url": "http://adjective-agent:3000",
     "name": "Adjective Agent",
-    "version": "11.1.1",
+    "version": "11.2.0",
     "description": "Generates descriptive adjectives for photos",
     "capabilities": ["photo_analysis", "adjective_generation"],
     "status": "available",
@@ -419,6 +595,28 @@ Test agent connection.
 ---
 
 ## Task Management Endpoints
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### GET /api/tasks/{taskId}
 
@@ -501,6 +699,28 @@ List user tasks.
 ---
 
 ## Monitoring Endpoints
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### GET /api/monitoring/metrics
 
@@ -611,6 +831,28 @@ Get error logs.
 
 ## Marketplace Endpoints
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 ### GET /api/marketplace
 
 Browse marketplace for available agents.
@@ -636,7 +878,7 @@ Browse marketplace for available agents.
       "capabilities": ["photo_analysis", "adjective_generation"],
       "rating": 4.8,
       "downloads": 1250,
-      "version": "11.1.1"
+      "version": "11.2.0"
     },
     {
       "id": "object-detection-agent",
@@ -646,7 +888,7 @@ Browse marketplace for available agents.
       "capabilities": ["object_detection", "image_classification"],
       "rating": 4.6,
       "downloads": 890,
-      "version": "11.1.1"
+      "version": "11.2.0"
     }
   ],
   "timestamp": "2025-08-06T21:00:00Z"
@@ -663,7 +905,7 @@ Install agent from marketplace.
 **Request Body:**
 ```json
 {
-  "version": "11.1.1",
+  "version": "11.2.0",
   "configuration": {
     "maxConcurrentRequests": 10,
     "timeout": 30000
@@ -677,7 +919,7 @@ Install agent from marketplace.
   "success": true,
   "data": {
     "agentId": "new-analysis-agent",
-    "version": "11.1.1",
+    "version": "11.2.0",
     "status": "installed",
     "url": "http://new-analysis-agent:3000",
     "installationTime": "2025-08-06T21:00:00Z"
@@ -696,7 +938,7 @@ Update marketplace agent.
 **Request Body:**
 ```json
 {
-  "version": "11.1.1"
+  "version": "11.2.0"
 }
 ```
 
@@ -706,7 +948,7 @@ Update marketplace agent.
   "success": true,
   "data": {
     "agentId": "adjective-agent",
-    "version": "11.1.1",
+    "version": "11.2.0",
     "status": "updated",
     "updateTime": "2025-08-06T21:00:00Z"
   },
@@ -737,6 +979,28 @@ Uninstall marketplace agent.
 ---
 
 ## MCP Protocol Endpoints
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### POST /mcp/analyze_photo
 
@@ -812,6 +1076,28 @@ MCP protocol endpoint for batch analysis.
 
 ## Agent Communication Protocol
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 ### Agent Health Check
 
 Agents should implement a health check endpoint:
@@ -824,7 +1110,7 @@ GET /health
 ```json
 {
   "status": "healthy",
-  "version": "11.1.1",
+  "version": "11.2.0",
   "capabilities": ["photo_analysis", "adjective_generation"],
   "uptime": 3600
 }
@@ -874,7 +1160,7 @@ GET /info
 ```json
 {
   "name": "Adjective Agent",
-  "version": "11.1.1",
+  "version": "11.2.0",
   "description": "Generates descriptive adjectives for photos",
   "capabilities": ["photo_analysis", "adjective_generation"],
   "author": "Kanizsa Team",
@@ -886,6 +1172,28 @@ GET /info
 
 ## Rate Limiting
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 All endpoints have configurable rate limits:
 
 - **Health/Status:** No limits
@@ -896,6 +1204,28 @@ All endpoints have configurable rate limits:
 - **Marketplace:** 5-30/minute
 
 ## Error Codes
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 | Code | Description |
 |------|-------------|
@@ -910,6 +1240,28 @@ All endpoints have configurable rate limits:
 | `INTERNAL_ERROR` | Internal server error |
 
 ## SDK Examples
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### JavaScript
 
@@ -966,6 +1318,28 @@ print(result)
 ---
 
 ## Support
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 For API support and questions:
 

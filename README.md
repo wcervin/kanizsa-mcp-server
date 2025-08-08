@@ -1,9 +1,30 @@
 # Kanizsa MCP Photo Server
 
-**VERSION:** 11.1.1 - Comprehensive API Coverage  
-**LAST UPDATED:** August 8, 2025, 12:11:55 CDT
+**VERSION:** 11.2.0 - Comprehensive API Coverage  
+**LAST UPDATED:** August 08, 2025, 12:42:33 CDT
 
 ## 🎯 **Independent MCP Server Repository**
+
+## 🚀 New Features
+
+### Modular Commit Workflow (v'$version')
+- **01_update_version.sh**: Handles version number updates with validation
+- **02_update_documentation.sh**: Updates documentation with new features and changes
+- **03_commit.sh**: Stages and commits changes with proper version information
+- **04_push.sh**: Pushes to remote with verification
+
+### Enhanced Version Management
+- Automatic version calculation (revision, minor, major)
+- Comprehensive validation of version updates
+- Cross-platform sed compatibility (macOS/Linux)
+- Detailed logging and error handling
+
+### Improved Documentation
+- Automatic changelog generation
+- Feature detection and documentation updates
+- API endpoint tracking and updates
+- Timestamp synchronization across all files
+
 
 This repository contains the **Kanizsa MCP Photo Server** - a standalone Model Context Protocol (MCP) server that provides photo analysis capabilities through a standardized interface. It operates as an independent service within the Kanizsa platform ecosystem.
 
