@@ -66,15 +66,14 @@ fi
 VERSION_TYPE="${1:-}"
 COMMIT_MESSAGE="${2:-}"
 
-# Show usage if no arguments provided
-if [[ -z "$VERSION_TYPE" ]]; then
+# Show usage if arguments are missing
+if [[ -z "$VERSION_TYPE" ]] || [[ -z "$COMMIT_MESSAGE" ]]; then
     echo ""
     print_status "Usage: $0 [version_type] [commit_message]"
-    echo "  version_type: 'revision', 'minor', 'major', 'custom', or 'none'"
-    echo "  commit_message: The commit message to use (required)"
+    echo "  version_type: 'revision', 'minor', 'major', or 'custom'"
+    echo "  commit_message: The commit message to use"
     echo ""
     print_status "Examples:"
-    echo "  $0 none 'fix: quick fix'                    # No version bump, just commit and push"
     echo "  $0 revision 'fix: bug fix'                  # Patch version bump"
     echo "  $0 minor 'feat: new feature'                # Minor version bump"
     echo "  $0 major 'BREAKING: major changes'          # Major version bump"
@@ -87,46 +86,35 @@ fi
 
 # Validate version type
 case $VERSION_TYPE in
-    "revision"|"minor"|"major"|"custom"|"none")
+    "revision"|"minor"|"major"|"custom")
         # Valid version type
         ;;
     *)
         print_error "Invalid version type: $VERSION_TYPE"
-        print_error "Valid types: revision, minor, major, custom, none"
+        print_error "Valid types: revision, minor, major, custom"
         exit 1
         ;;
 esac
-
-# Validate commit message is provided
-if [[ -z "$COMMIT_MESSAGE" ]]; then
-    print_error "Commit message is required!"
-    print_error "Usage: $0 [version_type] [commit_message]"
-    exit 1
-fi
 
 # Get current version
 CURRENT_VERSION=$(cat "$SCRIPT_DIR/VERSION")
 print_status "Current version: $CURRENT_VERSION"
 print_status "Version type: $VERSION_TYPE"
 
-# Step 1: Version Update (if requested)
-if [[ "$VERSION_TYPE" != "none" ]]; then
-    print_step "Step 1: Updating version..."
-    print_status "Running: ./01_update_version.sh $VERSION_TYPE"
-    
-    if [[ -f "$SCRIPT_DIR/01_update_version.sh" ]]; then
-        if ./01_update_version.sh "$VERSION_TYPE"; then
-            print_success "✓ Version update completed"
-        else
-            print_error "✗ Version update failed!"
-            exit 1
-        fi
+# Step 1: Version Update
+print_step "Step 1: Updating version..."
+print_status "Running: ./01_update_version.sh $VERSION_TYPE"
+
+if [[ -f "$SCRIPT_DIR/01_update_version.sh" ]]; then
+    if ./01_update_version.sh "$VERSION_TYPE"; then
+        print_success "✓ Version update completed"
     else
-        print_error "✗ 01_update_version.sh not found!"
+        print_error "✗ Version update failed!"
         exit 1
     fi
 else
-    print_step "Step 1: Skipping version update (none requested)"
+    print_error "✗ 01_update_version.sh not found!"
+    exit 1
 fi
 
 # Step 2: Documentation Update
@@ -192,12 +180,8 @@ fi
 print_header "🎉 Workflow Completed Successfully!"
 
 # Get final version
-if [[ "$VERSION_TYPE" != "none" ]]; then
-    FINAL_VERSION=$(cat "$SCRIPT_DIR/VERSION")
-    print_success "Version updated: $CURRENT_VERSION → $FINAL_VERSION"
-else
-    print_success "Version unchanged: $CURRENT_VERSION"
-fi
+FINAL_VERSION=$(cat "$SCRIPT_DIR/VERSION")
+print_success "Version updated: $CURRENT_VERSION → $FINAL_VERSION"
 
 print_status "Repository: kanizsa-mcp-server"
 print_status "All changes have been committed and pushed to remote"

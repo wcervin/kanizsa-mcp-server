@@ -4,8 +4,8 @@
  * This module provides unified monitoring, observability, and distributed
  * tracing capabilities across all services.
  * 
- * VERSION: 11.2.1 - Strong Typing & Code Quality
- * LAST UPDATED: August 08, 2025, 12:51:33 CDT
+ * VERSION: 11.2.2 - Strong Typing & Code Quality
+ * LAST UPDATED: August 08, 2025, 12:53:52 CDT
  */
 
 import { performance } from 'perf_hooks';
@@ -487,7 +487,7 @@ export class HealthChecker {
       status: overallStatus,
       timestamp: new Date().toISOString(),
       checks,
-      version: '11.2.1',
+      version: '11.2.2',
       uptime: Date.now() - this.startTime
     };
 
