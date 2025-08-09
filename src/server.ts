@@ -285,7 +285,8 @@ export class MCPPhotoServer {
 
   async run() {
     // Start the comprehensive API endpoints server
-    const apiPort = parseInt(process.env.MCP_API_PORT || '8003');
+    // Use port 8002 to match Kong configuration
+    const apiPort = parseInt(process.env.MCP_API_PORT || '8002');
     await this.apiEndpoints.start(apiPort);
     console.error(`Kanizsa MCP API Server running on port ${apiPort}`);
 

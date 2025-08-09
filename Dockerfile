@@ -47,8 +47,8 @@ RUN chown -R nodejs:nodejs /app
 # Switch to non-root user
 USER nodejs
 
-# Expose port (if needed for HTTP transport)
-EXPOSE 3000
+# Expose port for HTTP transport (matches Kong configuration)
+EXPOSE 8002
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \

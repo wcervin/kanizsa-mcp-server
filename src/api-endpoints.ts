@@ -11,7 +11,7 @@
 
 import express from 'express';
 import cors from 'cors';
-import rateLimit from 'express-rate-limit';
+// import rateLimit from 'express-rate-limit'; // Removed - Kong handles rate limiting
 import helmet from 'helmet';
 import { z } from 'zod';
 import { SharedHttpClient } from './shared-http-client.js';
@@ -61,6 +61,9 @@ export class MCPApiEndpoints {
 
   /**
    * Setup middleware for security and monitoring
+   * 
+   * Note: Rate limiting is handled by Kong Gateway to avoid conflicts
+   * and provide centralized rate limiting for all services.
    */
   private setupMiddleware(): void {
     // Security middleware
@@ -70,17 +73,8 @@ export class MCPApiEndpoints {
       credentials: true
     }));
 
-    // Rate limiting
-    const limiter = rateLimit({
-      windowMs: 15 * 60 * 1000, // 15 minutes
-      max: 100, // limit each IP to 100 requests per windowMs
-      message: {
-        error: 'Too many requests from this IP',
-        code: 'RATE_LIMIT_EXCEEDED',
-        timestamp: new Date().toISOString()
-      }
-    });
-    this.app.use(limiter);
+    // Rate limiting removed - Kong handles rate limiting
+    // const limiter = rateLimit({ ... }); // Removed to avoid conflicts with Kong
 
     // Request parsing
     this.app.use(express.json({ limit: '10mb' }));
