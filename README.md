@@ -1,248 +1,121 @@
-# Kanizsa MCP Photo Server
+# Kanizsa MCP Server
 
-**VERSION:** 11.5.0 - Comprehensive API Coverage  
-**LAST UPDATED:** August 08, 2025, 15:06:50 CDT
+**Version:** 11.5.0  
+**Last Updated:** August 9, 2025  
+**Purpose:** Model Context Protocol Server for Kanizsa Photo Ecosystem
 
-## 🎯 **Independent MCP Server Repository**
+## 🎯 **Overview**
 
-## 🚀 New Features
+The Kanizsa MCP Server is a containerized Model Context Protocol (MCP) server that orchestrates photo analysis within the Kanizsa ecosystem. It provides a standardized interface for connecting photo analysis agents to the main Kanizsa platform.
 
-### Modular Commit Workflow (v'$version')
-- **01_update_version.sh**: Handles version number updates with validation
-- **02_update_documentation.sh**: Updates documentation with new features and changes
-- **03_commit.sh**: Stages and commits changes with proper version information
-- **04_push.sh**: Pushes to remote with verification
+## 🏗️ **Kanizsa Ecosystem Integration**
 
-### Enhanced Version Management
-- Automatic version calculation (revision, minor, major)
-- Comprehensive validation of version updates
-- Cross-platform sed compatibility (macOS/Linux)
-- Detailed logging and error handling
-
-### Improved Documentation
-- Automatic changelog generation
-- Feature detection and documentation updates
-- API endpoint tracking and updates
-- Timestamp synchronization across all files
-
-
-This repository contains the **Kanizsa MCP Photo Server** - a standalone Model Context Protocol (MCP) server that provides photo analysis capabilities through a standardized interface. It operates as an independent service within the Kanizsa platform ecosystem.
-
-### **🏗️ Architecture Principles**
-
-- **🔗 Independent Repository**: Self-contained with no direct dependencies on other repositories
-- **🌐 HTTP Communication**: Communicates with agents and services via HTTP APIs
-- **📦 Containerized**: Runs as a Docker container with zero host dependencies
-- **🔒 Secure**: JWT authentication, rate limiting, and input validation
-- **📊 Observable**: Comprehensive monitoring, metrics, and distributed tracing
-- **🚀 Comprehensive API Coverage**: 100% endpoint coverage for platform and marketplace integration
-
-## 🏗️ **Platform Integration**
-
-This MCP Server is part of the **Kanizsa Platform** - a professional photo management ecosystem consisting of three independent repositories:
-
-### **Related Repositories**
-- **Kanizsa Photo Categorizer**: Core platform and API gateway
-  - Repository: `kanizsa-photo-categorizer`
-  - URL: https://github.com/wcervin/kanizsa-photo-categorizer
-- **Kanizsa Adjective Agent**: Specialized photo analysis agent
-  - Repository: `kanizsa-agent-adjective` 
-  - URL: https://github.com/wcervin/kanizsa-agent-adjective
-
-### **Communication Flow**
+### **Architecture**
 ```
 ┌─────────────────┐    HTTP    ┌─────────────────┐    HTTP    ┌─────────────────┐
-│  Kanizsa Platform│ ────────── │  MCP Server     │ ────────── │  Adjective Agent│
+│  Kanizsa Platform│ ────────── │  MCP Server     │ ────────── │  Analysis Agents│
+│  (Photo Categorizer)│         │  (This Repo)    │            │  (Adjective, etc)│
 └─────────────────┘            └─────────────────┘            └─────────────────┘
 ```
 
+### **Role in Ecosystem**
+- **Orchestrates** photo analysis requests from the main platform
+- **Routes** requests to appropriate analysis agents
+- **Provides** standardized MCP protocol interface
+- **Enables** agent marketplace and discovery
+
 ## 🚀 **Quick Start**
 
-### **Prerequisites**
-- Docker and Docker Compose
-- Redis (for caching and rate limiting)
-
-### **Start the MCP Server**
+### **Containerized Deployment**
 ```bash
-# Build and start
-docker-compose up kanizsa-mcp-server
-
-# Or build manually
+# Build and run with Docker
 docker build -t kanizsa-mcp-server .
 docker run -p 8002:8002 kanizsa-mcp-server
+
+# Or with Docker Compose
+docker-compose up -d
 ```
 
-### **Configuration**
+### **Environment Configuration**
 ```bash
-# Environment variables
-export MCP_SERVER_PORT=8002
-export REDIS_URL=redis://localhost:6379
-export JWT_SECRET=your-secret-key
-export KANIZSA_BASE_URL=http://kanizsa-app:5000
+# Required environment variables
+MCP_SERVER_PORT=8002
+JWT_SECRET=your-secret-key
+KANIZSA_BASE_URL=http://kanizsa-app:8000
 ```
 
-## 🔌 **Communication Patterns**
+## 🔌 **API Endpoints**
 
-### **1. Agent Communication (HTTP)**
-```typescript
-// MCP Server communicates with agents via HTTP
-const agentResponse = await fetch('http://available-agent:3000/analyze', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ photoUrl, options })
-});
-```
+### **MCP Protocol (Port 8002)**
+- `POST /mcp/analyze_photo` - Analyze single photo
+- `POST /mcp/analyze_batch` - Analyze multiple photos
+- `GET /mcp/health` - System health check
+- `GET /mcp/metrics` - System metrics
 
-### **2. Kanizsa Platform Communication (HTTP)**
-```typescript
-// MCP Server communicates with Kanizsa platform via HTTP
-const platformResponse = await fetch('http://kanizsa-app:5000/api/photos/analyze', {
-  method: 'POST',
-  headers: { 
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${jwtToken}`
-  },
-  body: JSON.stringify({ photoPath, agentId, options })
-});
-```
-
-### **3. Kong API Gateway Integration**
-```yaml
-# Kong routes MCP Server requests
-      - name: kanizsa-mcp-server
-        url: http://kanizsa-mcp-server:8002
-  routes:
-    - name: mcp-routes
-      paths: ["/mcp"]
-      methods: ["GET", "POST"]
-```
-
-## 📋 **Comprehensive API Coverage**
-
-### **Photo Analysis Endpoints**
-- `POST /api/photos/analyze`: Analyze single photo with agent selection
-- `POST /api/photos/analyze/batch`: Analyze multiple photos in batch
-- `GET /api/photos/metadata/{photoId}`: Get photo metadata from cache
-- `POST /api/photos/scan`: Scan photo library
-
-### **Agent Management Endpoints**
-- `GET /api/agents`: List available agents
-- `GET /api/agents/{agentId}`: Get agent details
-- `POST /api/agents`: Register new agent
-- `POST /api/agents/{agentId}/test`: Test agent connection
-
-### **Task Management Endpoints**
-- `GET /api/tasks/{taskId}`: Get task status
-- `POST /api/tasks/{taskId}/cancel`: Cancel running task
-- `GET /api/tasks`: List user tasks
-
-### **Monitoring Endpoints**
-- `GET /api/monitoring/metrics`: Get system metrics
-- `GET /api/monitoring/performance`: Get performance statistics
-- `GET /api/monitoring/errors`: Get error logs
-
-### **Marketplace Endpoints**
-- `GET /api/marketplace`: Browse marketplace for agents
-- `POST /api/marketplace/install/{agentId}`: Install agent from marketplace
-- `PUT /api/marketplace/update/{agentId}`: Update marketplace agent
-- `DELETE /api/marketplace/uninstall/{agentId}`: Uninstall marketplace agent
-
-### **MCP Protocol Tools**
-- `analyze_photo`: MCP protocol for photo analysis
-- `analyze_photo_batch`: MCP protocol for batch analysis
-- `get_system_health`: Check system health and status
-- `get_task_status`: Monitor background task progress
+### **HTTP API (Port 8002)**
+- `GET /health` - Health status
+- `GET /api/agents` - List available agents
+- `POST /api/photos/analyze` - Photo analysis
+- `GET /api/tasks/{taskId}` - Task status
 
 ## 🔧 **Development**
 
-### **Build**
+### **Containerized Development**
 ```bash
-npm install
-npm run build
+# Build development image
+docker build -t kanizsa-mcp-server:dev .
+
+# Run with hot reload
+docker run -p 8002:8002 -v $(pwd)/src:/app/src kanizsa-mcp-server:dev
 ```
 
-### **Test**
+### **Testing**
 ```bash
-npm test
-npm run test:type-safety
-npm run test:integration
-```
+# Run tests in container
+docker run kanizsa-mcp-server npm test
 
-### **Development Mode**
-```bash
-npm run dev
+# Integration tests
+docker run kanizsa-mcp-server npm run test:integration
 ```
 
 ## 📊 **Monitoring**
 
-### **Health Check**
+### **Health Checks**
 ```bash
-curl http://localhost:8002/health
-```
+# Container health
+docker exec kanizsa-mcp-server curl http://localhost:8002/health
 
-### **Metrics**
-```bash
-curl http://localhost:8002/metrics
+# Metrics
+docker exec kanizsa-mcp-server curl http://localhost:8002/metrics
 ```
 
 ### **Logs**
 ```bash
+# Container logs
 docker logs kanizsa-mcp-server
+
+# Follow logs
+docker logs -f kanizsa-mcp-server
 ```
 
 ## 🔒 **Security**
 
-- **JWT Authentication**: Secure token-based authentication
-- **Rate Limiting**: Per-user, per-endpoint rate limiting
-- **Input Validation**: Comprehensive Zod schema validation
-- **Audit Logging**: Security event logging and monitoring
-
-## 📚 **API Documentation**
-
-### **Comprehensive API Coverage**
-The MCP Server provides **100% API endpoint coverage** for both Kanizsa platform integration and third-party agent marketplace management.
-
-### **API Endpoints (Port 8003)**
-- **Health & Status**: `/health`, `/status`, `/version`
-- **Photo Analysis**: `/api/photos/*` (4 endpoints)
-- **Agent Management**: `/api/agents/*` (4 endpoints)
-- **Task Management**: `/api/tasks/*` (3 endpoints)
-- **Monitoring**: `/api/monitoring/*` (3 endpoints)
-- **Marketplace**: `/api/marketplace/*` (4 endpoints)
-
-### **MCP Protocol Endpoints (Port 8002)**
-- `POST /mcp/analyze_photo`: Analyze single photo
-- `POST /mcp/analyze_batch`: Analyze multiple photos
-- `GET /mcp/health`: System health check
-- `GET /mcp/metrics`: System metrics
-
-### **Complete Documentation**
-See [API_DOCUMENTATION.md](API_DOCUMENTATION.md) for comprehensive endpoint documentation with examples, rate limits, and error codes.
-
-## 🏗️ **Repository Independence**
-
-This repository is **completely independent** and:
-
-- ✅ **No direct dependencies** on other repositories
-- ✅ **HTTP-based communication** with agents and services
-- ✅ **Self-contained deployment** with Docker
-- ✅ **Independent versioning** and release management
-- ✅ **Separate CI/CD pipeline** support
-- ✅ **Independent testing** and validation
+- **JWT Authentication** - Token-based API security
+- **Rate Limiting** - Per-user and per-endpoint limits
+- **Input Validation** - Comprehensive request validation
+- **Container Isolation** - Zero host dependencies
 
 ## 📦 **Deployment**
 
 ### **Docker Compose**
 ```yaml
 kanizsa-mcp-server:
-  build: ./kanizsa-mcp-server
+  build: .
   ports:
     - "8002:8002"
   environment:
     - MCP_SERVER_PORT=8002
-    - REDIS_URL=redis://redis:6379
-  depends_on:
-    - redis
+    - JWT_SECRET=your-secret-key
 ```
 
 ### **Kubernetes**
@@ -253,35 +126,34 @@ metadata:
   name: kanizsa-mcp-server
 spec:
   replicas: 3
-  selector:
-    matchLabels:
-      app: kanizsa-mcp-server
   template:
-    metadata:
-      labels:
-        app: kanizsa-mcp-server
     spec:
       containers:
       - name: kanizsa-mcp-server
-        image: kanizsa-mcp-server:7.0.0
+        image: kanizsa-mcp-server:11.5.0
         ports:
         - containerPort: 8002
 ```
 
-## 🔄 **Integration with Kanizsa Platform**
+## 🔄 **Ecosystem Communication**
 
-### **Platform Communication**
-The MCP Server integrates seamlessly with the Kanizsa platform:
-
-1. **Receives requests** from the Kanizsa Flask API
-2. **Orchestrates analysis** by calling appropriate agents
-3. **Returns results** to the platform for storage and user display
-4. **Provides monitoring** and health information
+### **Platform Integration**
+- Receives analysis requests from Kanizsa Photo Categorizer
+- Routes requests to appropriate analysis agents
+- Returns results to platform for user display
+- Provides health and monitoring data
 
 ### **Agent Discovery**
-The MCP Server can discover and integrate with various analysis agents:
-- **Adjective Agent**: Photo description and categorization
-- **Future Agents**: Object detection, face recognition, etc.
+- Discovers available analysis agents via HTTP
+- Supports agent marketplace integration
+- Enables dynamic agent registration
+- Provides agent health monitoring
+
+## 📚 **Documentation**
+
+- **[API Documentation](API_DOCUMENTATION.md)** - Complete endpoint reference
+- **[MCP Protocol](src/mcp-protocol.md)** - Protocol specification
+- **[Deployment Guide](DEPLOYMENT.md)** - Production deployment
 
 ## 🤝 **Contributing**
 
@@ -299,6 +171,6 @@ MIT License - see LICENSE file for details.
 
 **Repository:** Independent MCP Server  
 **Communication:** HTTP APIs only  
-**Deployment:** Containerized  
-**Dependencies:** None on other repositories  
-**Platform Integration:** Kanizsa Photo Management Ecosystem
+**Deployment:** Fully containerized  
+**Dependencies:** Zero host dependencies  
+**Integration:** Kanizsa Photo Management Ecosystem
