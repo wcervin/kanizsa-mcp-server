@@ -6,9 +6,53 @@
 
 ## Overview
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 The Kanizsa MCP Server provides a comprehensive API for photo analysis, agent management, and task processing within the Kanizsa ecosystem.
 
 ## Authentication
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 All API requests require authentication via JWT tokens in the Authorization header:
 
@@ -18,11 +62,55 @@ Authorization: Bearer <your-jwt-token>
 
 ## Base URL
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 ```
 http://localhost:8002
 ```
 
 ## Endpoints
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 ### Health & Status
 
@@ -119,6 +207,28 @@ Uninstall an agent.
 
 ## Error Responses
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 All endpoints return consistent error responses:
 
 ```json
@@ -131,12 +241,56 @@ All endpoints return consistent error responses:
 
 ## Rate Limiting
 
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
+
 API requests are rate-limited to prevent abuse. Limits are enforced by the Kong API Gateway.
 
 ## Versioning
+
+## Version '$version' - '$timestamp'
+
+### New Features
+- Enhanced modular commit workflow with separate scripts
+- Improved version management with validation
+- Better error handling and verification
+
+### API Changes
+- Updated version headers across all endpoints
+- Enhanced error responses with version information
+
+### Documentation Updates
+- Comprehensive version and timestamp updates
+- Improved API documentation structure
+- Enhanced changelog tracking
+
+### Technical Improvements
+- Modular script architecture (01_update_version.sh, 02_update_documentation.sh, 03_commit.sh, 04_push.sh)
+- Better sed pattern compatibility for macOS
+- Enhanced verification and error handling
+
 
 API versioning is handled through the X-Kanizsa-Version header.
 
 ---
 
-**Footer:** Kanizsa MCP Server API v12.0.0 | Last Updated: August 9, 2025
+**Footer:** Kanizsa MCP Server API v12.1.0 | Last Updated: August 09, 2025, 17:06:21 CDT

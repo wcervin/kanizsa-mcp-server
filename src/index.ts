@@ -4,8 +4,8 @@
  * This module provides a unified interface for all shared components
  * in the Kanizsa MCP architecture.
  * 
- * VERSION: 12.0.0 - Strong Typing & Code Quality
- * LAST UPDATED: August 09, 2025, 11:09:31 CDT
+ * VERSION: 12.1.0 - Strong Typing & Code Quality
+ * LAST UPDATED: August 09, 2025, 17:06:21 CDT
  */
 
 // =============================================================================
