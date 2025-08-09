@@ -1,5 +1,5 @@
 # MCP Server Dockerfile
-# Kanizsa v11.5.0 - Strong Typing & Code Quality
+# Kanizsa v12.0.0 - Strong Typing & Code Quality
 # LAST UPDATED: August 5, 2025, 14:25:00 CDT
 
 # Multi-stage build for optimization
